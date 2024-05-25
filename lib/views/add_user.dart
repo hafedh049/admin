@@ -9,7 +9,7 @@ import 'package:dabka/utils/shared.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:image_cropper/image_cropper.dart';
@@ -55,7 +55,7 @@ class _AddUserState extends State<AddUser> {
         appBar: AppBar(
           centerTitle: true,
           backgroundColor: white,
-          title: Text("Add User", style: GoogleFonts.poppins(color: dark, fontSize: 20)),
+          title: Text("Add User".tr, style: GoogleFonts.poppins(color: dark, fontSize: 20)),
           leading: IconButton(
             onPressed: () => Navigator.pop(context),
             icon: const Icon(FontAwesome.chevron_left_solid, size: 15, color: purple),
@@ -98,7 +98,7 @@ class _AddUserState extends State<AddUser> {
                                     children: <Widget>[
                                       const Icon(FontAwesome.camera_solid, color: purple, size: 20),
                                       const SizedBox(width: 5),
-                                      Text("Camera", style: GoogleFonts.abel(fontSize: 16, color: purple, fontWeight: FontWeight.w500)),
+                                      Text("Camera".tr, style: GoogleFonts.abel(fontSize: 16, color: purple, fontWeight: FontWeight.w500)),
                                     ],
                                   ),
                                 ),
@@ -124,7 +124,7 @@ class _AddUserState extends State<AddUser> {
                                     children: <Widget>[
                                       const Icon(FontAwesome.camera_solid, color: purple, size: 20),
                                       const SizedBox(width: 5),
-                                      Text("Gallery", style: GoogleFonts.abel(fontSize: 16, color: purple, fontWeight: FontWeight.w500)),
+                                      Text("Gallery".tr, style: GoogleFonts.abel(fontSize: 16, color: purple, fontWeight: FontWeight.w500)),
                                     ],
                                   ),
                                 ),
@@ -136,7 +136,7 @@ class _AddUserState extends State<AddUser> {
                       child: AnimatedContainer(
                         width: 80,
                         height: 80,
-                        duration: 300.ms,
+                        duration: 300.milliseconds,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           color: white,
@@ -160,7 +160,7 @@ class _AddUserState extends State<AddUser> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                        Text("Username", style: GoogleFonts.abel(fontSize: 16, color: dark, fontWeight: FontWeight.w500)),
+                        Text("Username".tr, style: GoogleFonts.abel(fontSize: 16, color: dark, fontWeight: FontWeight.w500)),
                         const SizedBox(height: 10),
                         SizedBox(
                           height: 40,
@@ -174,9 +174,9 @@ class _AddUserState extends State<AddUser> {
                               focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: const BorderSide(color: grey, width: .3)),
                               enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: const BorderSide(color: grey, width: .3)),
                               focusedErrorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: const BorderSide(color: grey, width: .3)),
-                              hintText: "Username",
+                              hintText: "Username".tr,
                               hintStyle: GoogleFonts.abel(color: grey, fontSize: 14, fontWeight: FontWeight.w500),
-                              labelText: "Enter username",
+                              labelText: "Enter username".tr,
                               labelStyle: GoogleFonts.abel(color: grey, fontSize: 14, fontWeight: FontWeight.w500),
                               prefixIcon: const IconButton(onPressed: null, icon: Icon(FontAwesome.user, color: grey, size: 15)),
                             ),
@@ -199,7 +199,7 @@ class _AddUserState extends State<AddUser> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                        Text("E-mail", style: GoogleFonts.abel(fontSize: 16, color: dark, fontWeight: FontWeight.w500)),
+                        Text("E-mail".tr, style: GoogleFonts.abel(fontSize: 16, color: dark, fontWeight: FontWeight.w500)),
                         const SizedBox(height: 10),
                         SizedBox(
                           height: 40,
@@ -213,9 +213,9 @@ class _AddUserState extends State<AddUser> {
                               focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: const BorderSide(color: grey, width: .3)),
                               enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: const BorderSide(color: grey, width: .3)),
                               focusedErrorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: const BorderSide(color: grey, width: .3)),
-                              hintText: "E-mail",
+                              hintText: "E-mail".tr,
                               hintStyle: GoogleFonts.abel(color: grey, fontSize: 14, fontWeight: FontWeight.w500),
-                              labelText: "Enter your e-mail",
+                              labelText: "Enter your e-mail".tr,
                               labelStyle: GoogleFonts.abel(color: grey, fontSize: 14, fontWeight: FontWeight.w500),
                               prefixIcon: const IconButton(onPressed: null, icon: Icon(FontAwesome.lock_solid, color: grey, size: 15)),
                             ),
@@ -238,7 +238,7 @@ class _AddUserState extends State<AddUser> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                        Text("Password", style: GoogleFonts.abel(fontSize: 16, color: dark, fontWeight: FontWeight.w500)),
+                        Text("Password".tr, style: GoogleFonts.abel(fontSize: 16, color: dark, fontWeight: FontWeight.w500)),
                         const SizedBox(height: 10),
                         SizedBox(
                           height: 40,
@@ -257,7 +257,7 @@ class _AddUserState extends State<AddUser> {
                                   focusedErrorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: const BorderSide(color: grey, width: .3)),
                                   hintText: "**********",
                                   hintStyle: GoogleFonts.abel(color: grey, fontSize: 14, fontWeight: FontWeight.w500),
-                                  labelText: "كلمة المرور",
+                                  labelText: "Password".tr,
                                   labelStyle: GoogleFonts.abel(color: grey, fontSize: 14, fontWeight: FontWeight.w500),
                                   prefixIcon: const IconButton(onPressed: null, icon: Icon(FontAwesome.lock_solid, color: grey, size: 15)),
                                   suffixIcon: IconButton(
@@ -286,13 +286,13 @@ class _AddUserState extends State<AddUser> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                        Text("Phone Number", style: GoogleFonts.abel(fontSize: 16, color: dark, fontWeight: FontWeight.w500)),
+                        Text("Phone Number".tr, style: GoogleFonts.abel(fontSize: 16, color: dark, fontWeight: FontWeight.w500)),
                         const SizedBox(height: 10),
                         InternationalPhoneNumberInput(
                           height: 40,
                           controller: _phoneController,
                           formatter: MaskedInputFormatter('## ### ###'),
-                          initCountry: CountryCodeModel(name: "Tunisia", dial_code: "+216", code: "TN"),
+                          initCountry: CountryCodeModel(name: "Tunisia".tr, dial_code: "+216", code: "TN"),
                           betweenPadding: 10,
                           onInputChanged: (IntPhoneNumber phone) {},
                           dialogConfig: DialogConfig(
@@ -309,9 +309,9 @@ class _AddUserState extends State<AddUser> {
                             searchBoxHintStyle: GoogleFonts.abel(color: grey, fontSize: 14, fontWeight: FontWeight.w500),
                             flatFlag: true,
                             itemFlagSize: 20,
-                            title: "حدد الدولة",
+                            title: "Pick a country".tr,
                             searchBoxRadius: 5,
-                            searchHintText: "بحث",
+                            searchHintText: "Search".tr,
                           ),
                           countryConfig: CountryConfig(
                             decoration: BoxDecoration(border: Border.all(width: .3, color: grey), borderRadius: BorderRadius.circular(8)),
@@ -324,10 +324,10 @@ class _AddUserState extends State<AddUser> {
                             enabledColor: grey,
                             errorColor: grey,
                             labelStyle: GoogleFonts.abel(color: dark, fontSize: 14, fontWeight: FontWeight.w500),
-                            labelText: "رقم الهاتف",
+                            labelText: "Phone Number".tr,
                             floatingLabelStyle: GoogleFonts.abel(color: grey, fontSize: 14, fontWeight: FontWeight.w500),
                             radius: 8,
-                            hintText: "رقم الهاتف",
+                            hintText: "Phone Number".tr,
                             borderWidth: .3,
                             backgroundColor: transparent,
                             decoration: null,
@@ -355,18 +355,18 @@ class _AddUserState extends State<AddUser> {
                           highlightColor: transparent,
                           onTap: () => _gender == "M" ? null : _(() => _gender = "M"),
                           child: AnimatedContainer(
-                            duration: 300.ms,
+                            duration: 300.milliseconds,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5),
                               color: white,
                               border: Border.all(color: _gender == "M" ? pink : grey, width: _gender == "M" ? .8 : .3),
                             ),
                             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                            child: Text("Male", style: GoogleFonts.abel(fontSize: 12, color: dark, fontWeight: FontWeight.w500)),
+                            child: Text("Male".tr, style: GoogleFonts.abel(fontSize: 12, color: dark, fontWeight: FontWeight.w500)),
                           ),
                         ),
                         const SizedBox(width: 10),
-                        Text("OR", style: GoogleFonts.abel(fontSize: 12, color: grey, fontWeight: FontWeight.w500)),
+                        Text("OR".tr, style: GoogleFonts.abel(fontSize: 12, color: grey, fontWeight: FontWeight.w500)),
                         const SizedBox(width: 10),
                         InkWell(
                           splashColor: transparent,
@@ -374,14 +374,14 @@ class _AddUserState extends State<AddUser> {
                           highlightColor: transparent,
                           onTap: () => _gender == "F" ? null : _(() => _gender = "F"),
                           child: AnimatedContainer(
-                            duration: 300.ms,
+                            duration: 300.milliseconds,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5),
                               color: white,
                               border: Border.all(color: _gender == "F" ? pink : grey, width: _gender == "F" ? .8 : .3),
                             ),
                             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                            child: Text("Female", style: GoogleFonts.abel(fontSize: 12, color: dark, fontWeight: FontWeight.w500)),
+                            child: Text("Female".tr, style: GoogleFonts.abel(fontSize: 12, color: dark, fontWeight: FontWeight.w500)),
                           ),
                         ),
                       ],
@@ -400,17 +400,17 @@ class _AddUserState extends State<AddUser> {
                           highlightColor: transparent,
                           onTap: () async {
                             if (_usernameController.text.trim().isEmpty) {
-                              showToast(context, "Username is required", color: red);
+                              showToast(context, "Username is required".tr, color: red);
                             } else if (!_emailController.text.contains(RegExp(r'^[\w\-\.]+@([\w\-]+\.)+[\w-]{2,4}$'))) {
-                              showToast(context, "Enter a correct e-mail address", color: red);
+                              showToast(context, "Enter a correct e-mail address".tr, color: red);
                             } else if (!_passwordController.text.contains(RegExp(r'^\w{6,}$'))) {
-                              showToast(context, "Enter a correct password", color: red);
+                              showToast(context, "Enter a correct password".tr, color: red);
                             } else if (_phoneController.text.trim().replaceAll(" ", "").isEmpty || _phoneController.text.trim().replaceAll(" ", "").length < 8) {
-                              showToast(context, "Enter a valid phone number please", color: red);
+                              showToast(context, "Enter a valid phone number please".tr, color: red);
                             } else {
                               try {
                                 _(() => _ignoreStupidity = true);
-                                showToast(context, "Please wait...");
+                                showToast(context, "Please wait...".tr);
                                 final UserCredential creds = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: _emailController.text, password: _passwordController.text);
 
                                 String path = "";
@@ -442,7 +442,7 @@ class _AddUserState extends State<AddUser> {
                                 _passwordController.clear();
                                 _phoneController.clear();
 
-                                showToast(context, "User Created Successfully");
+                                showToast(context, "User Created Successfully".tr);
                                 _(() => _ignoreStupidity = false);
                               } catch (e) {
                                 showToast(context, e.toString(), color: red);
@@ -453,7 +453,7 @@ class _AddUserState extends State<AddUser> {
                           child: Container(
                             padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 48),
                             decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: purple),
-                            child: Text("Create User", style: GoogleFonts.abel(color: white, fontSize: 14, fontWeight: FontWeight.bold)),
+                            child: Text("Create User".tr, style: GoogleFonts.abel(color: white, fontSize: 14, fontWeight: FontWeight.bold)),
                           ),
                         ),
                       );

@@ -7,7 +7,7 @@ import 'package:dabka/models/category_model.dart';
 import 'package:dabka/utils/shared.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:image_cropper/image_cropper.dart';
@@ -46,7 +46,7 @@ class _AddCategoryState extends State<AddCategory> {
         backgroundColor: white,
         appBar: AppBar(
           centerTitle: true,
-          title: Text("Add Category", style: GoogleFonts.poppins(color: dark, fontSize: 20)),
+          title: Text("Add Category".tr, style: GoogleFonts.poppins(color: dark, fontSize: 20)),
           leading: IconButton(
             onPressed: () => Navigator.pop(context),
             icon: const Icon(FontAwesome.chevron_left_solid, size: 15, color: purple),
@@ -75,7 +75,7 @@ class _AddCategoryState extends State<AddCategory> {
                       child: AnimatedContainer(
                         width: 100,
                         height: 100,
-                        duration: 300.ms,
+                        duration: 300.milliseconds,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           color: white,
@@ -107,7 +107,7 @@ class _AddCategoryState extends State<AddCategory> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                        Text("Category name", style: GoogleFonts.abel(fontSize: 16, color: dark, fontWeight: FontWeight.w500)),
+                        Text("Category Name".tr, style: GoogleFonts.abel(fontSize: 16, color: dark, fontWeight: FontWeight.w500)),
                         const SizedBox(height: 10),
                         SizedBox(
                           height: 40,
@@ -121,9 +121,9 @@ class _AddCategoryState extends State<AddCategory> {
                               focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: const BorderSide(color: grey, width: .3)),
                               enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: const BorderSide(color: grey, width: .3)),
                               focusedErrorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: const BorderSide(color: grey, width: .3)),
-                              hintText: "Category",
+                              hintText: "Category".tr,
                               hintStyle: GoogleFonts.abel(color: grey, fontSize: 14, fontWeight: FontWeight.w500),
-                              labelText: "Enter Category name",
+                              labelText: "Enter Category name".tr,
                               labelStyle: GoogleFonts.abel(color: grey, fontSize: 14, fontWeight: FontWeight.w500),
                               prefixIcon: const IconButton(onPressed: null, icon: Icon(FontAwesome.user, color: grey, size: 15)),
                             ),
@@ -145,13 +145,13 @@ class _AddCategoryState extends State<AddCategory> {
                           highlightColor: transparent,
                           onTap: () async {
                             if (_categoryNameController.text.trim().isEmpty) {
-                              showToast(context, "Category name is required", color: red);
+                              showToast(context, "Category name is required".tr, color: red);
                             } else if (_image == null) {
-                              showToast(context, "Pick an image for the category", color: red);
+                              showToast(context, "Pick an image for the category".tr, color: red);
                             } else {
                               try {
                                 _(() => _ignoreStupidity = true);
-                                showToast(context, "Please wait...");
+                                showToast(context, "Please wait...".tr);
 
                                 final String categoryID = const Uuid().v8();
 
@@ -173,7 +173,7 @@ class _AddCategoryState extends State<AddCategory> {
                                 _categoryNameController.clear();
                                 _categoryImageKey.currentState!.setState(() => _image = null);
 
-                                showToast(context, "Category Created Successfully");
+                                showToast(context, "Category Created Successfully".tr);
                                 _(() => _ignoreStupidity = false);
                               } catch (e) {
                                 showToast(context, e.toString(), color: red);
@@ -184,7 +184,7 @@ class _AddCategoryState extends State<AddCategory> {
                           child: Container(
                             padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 48),
                             decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: purple),
-                            child: Text("Add Category", style: GoogleFonts.abel(color: white, fontSize: 14, fontWeight: FontWeight.bold)),
+                            child: Text("Add Category".tr, style: GoogleFonts.abel(color: white, fontSize: 14, fontWeight: FontWeight.bold)),
                           ),
                         ),
                       );

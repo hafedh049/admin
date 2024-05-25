@@ -5,12 +5,12 @@ import 'package:dabka/views/holder.dart';
 import 'package:dabka/views/sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
+
+import 'translations/translation.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  Animate.restartOnHotReload = true;
   runApp(const Main());
 }
 
@@ -20,6 +20,9 @@ class Main extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      locale: const Locale('en', 'US'),
+      fallbackLocale: const Locale('en', 'US'),
+      translations: Translation(),
       home: FutureBuilder<bool>(
         future: init(),
         builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {

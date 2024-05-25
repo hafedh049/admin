@@ -6,7 +6,7 @@ import 'package:dabka/utils/helpers/wait.dart';
 import 'package:dabka/utils/shared.dart';
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:lottie/lottie.dart';
@@ -34,11 +34,11 @@ class _OffersListState extends State<OffersList> {
     final dayBeforeYesterday = today.subtract(2.days);
 
     if (date.year == today.year && date.month == today.month && date.day == today.day) {
-      return 'Today, at ${formatDate(date, const <String>[hh, ':', nn, ':', ss, ' ', am])}';
+      return '${"Today, at".tr} ${formatDate(date, const <String>[hh, ':', nn, ':', ss, ' ', am])}';
     } else if (date.year == today.year && date.month == today.month && date.day == yesterday.day) {
-      return 'Yesterday, at ${formatDate(date, const <String>[hh, ':', nn, ':', ss, ' ', am])}';
+      return '${"Yesterday, at".tr} ${formatDate(date, const <String>[hh, ':', nn, ':', ss, ' ', am])}';
     } else if (date.year == today.year && date.month == today.month && date.day == dayBeforeYesterday.day) {
-      return '2 days ago, at ${formatDate(date, const <String>[hh, ':', nn, ':', ss, ' ', am])}';
+      return '${"2 days ago, at".tr} ${formatDate(date, const <String>[hh, ':', nn, ':', ss, ' ', am])}';
     } else {
       return formatDate(date, const <String>[dd, '/', mm, '/', yyyy, ' ', hh, ':', nn, ':', ss, ' ', am]);
     }
@@ -58,7 +58,7 @@ class _OffersListState extends State<OffersList> {
       children: <Widget>[
         Row(
           children: <Widget>[
-            Text("Offers List", style: GoogleFonts.abel(fontSize: 22, color: dark, fontWeight: FontWeight.w500)),
+            Text("Offers List".tr, style: GoogleFonts.abel(fontSize: 22, color: dark, fontWeight: FontWeight.w500)),
             const Spacer(),
             IconButton(
               onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const AddOffer())),
@@ -85,7 +85,7 @@ class _OffersListState extends State<OffersList> {
                         controller: _searchController,
                         decoration: InputDecoration(
                           border: InputBorder.none,
-                          hintText: "Search",
+                          hintText: "Search".tr,
                           contentPadding: const EdgeInsets.all(16),
                           hintStyle: GoogleFonts.itim(color: grey, fontSize: 16, fontWeight: FontWeight.w500),
                         ),
@@ -126,7 +126,7 @@ class _OffersListState extends State<OffersList> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisSize: MainAxisSize.min,
                                 children: <Widget>[
-                                  Text("Are you sure ?", style: GoogleFonts.abel(fontSize: 14, color: dark, fontWeight: FontWeight.w500)),
+                                  Text("Are you sure ?".tr, style: GoogleFonts.abel(fontSize: 14, color: dark, fontWeight: FontWeight.w500)),
                                   const SizedBox(height: 20),
                                   Row(
                                     children: <Widget>[
@@ -134,17 +134,17 @@ class _OffersListState extends State<OffersList> {
                                       TextButton(
                                         onPressed: () async {
                                           await FirebaseFirestore.instance.collection("offers").doc(snapshot.data!.docs[index].id).delete();
-                                          showToast(context, "Offer deleted successfully");
+                                          showToast(context, "Offer deleted successfully".tr);
                                           Navigator.pop(context);
                                         },
                                         style: const ButtonStyle(backgroundColor: WidgetStatePropertyAll<Color>(purple)),
-                                        child: Text("OK", style: GoogleFonts.abel(fontSize: 12, color: white, fontWeight: FontWeight.w500)),
+                                        child: Text("OK".tr, style: GoogleFonts.abel(fontSize: 12, color: white, fontWeight: FontWeight.w500)),
                                       ),
                                       const SizedBox(width: 10),
                                       TextButton(
                                         onPressed: () => Navigator.pop(context),
                                         style: ButtonStyle(backgroundColor: WidgetStatePropertyAll<Color>(grey.withOpacity(.3))),
-                                        child: Text("CANCEL", style: GoogleFonts.abel(fontSize: 12, color: dark, fontWeight: FontWeight.w500)),
+                                        child: Text("CANCEL".tr, style: GoogleFonts.abel(fontSize: 12, color: dark, fontWeight: FontWeight.w500)),
                                       ),
                                     ],
                                   ),
@@ -185,7 +185,7 @@ class _OffersListState extends State<OffersList> {
                                     Container(
                                       padding: const EdgeInsets.all(4),
                                       decoration: BoxDecoration(color: purple, borderRadius: BorderRadius.circular(5)),
-                                      child: Text("CATEGORY ID", style: GoogleFonts.abel(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
+                                      child: Text("CATEGORY ID".tr, style: GoogleFonts.abel(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
                                     ),
                                     const SizedBox(width: 10),
                                     Flexible(child: Text(_offers[index].categoryID, style: GoogleFonts.abel(fontSize: 12, color: dark, fontWeight: FontWeight.w500))),
@@ -197,7 +197,7 @@ class _OffersListState extends State<OffersList> {
                                     Container(
                                       padding: const EdgeInsets.all(4),
                                       decoration: BoxDecoration(color: purple, borderRadius: BorderRadius.circular(5)),
-                                      child: Text("CATEGORY NAME", style: GoogleFonts.abel(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
+                                      child: Text("CATEGORY NAME".tr, style: GoogleFonts.abel(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
                                     ),
                                     const SizedBox(width: 10),
                                     Flexible(child: Text(_offers[index].category.toUpperCase(), style: GoogleFonts.abel(fontSize: 12, color: dark, fontWeight: FontWeight.w500))),
@@ -209,7 +209,7 @@ class _OffersListState extends State<OffersList> {
                                     Container(
                                       padding: const EdgeInsets.all(4),
                                       decoration: BoxDecoration(color: purple, borderRadius: BorderRadius.circular(5)),
-                                      child: Text("OFFER ID", style: GoogleFonts.abel(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
+                                      child: Text("OFFER ID".tr, style: GoogleFonts.abel(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
                                     ),
                                     const SizedBox(width: 10),
                                     Flexible(child: Text(_offers[index].offerID, style: GoogleFonts.abel(fontSize: 12, color: dark, fontWeight: FontWeight.w500))),
@@ -221,7 +221,7 @@ class _OffersListState extends State<OffersList> {
                                     Container(
                                       padding: const EdgeInsets.all(4),
                                       decoration: BoxDecoration(color: purple, borderRadius: BorderRadius.circular(5)),
-                                      child: Text("OFFER NAME", style: GoogleFonts.abel(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
+                                      child: Text("OFFER NAME".tr, style: GoogleFonts.abel(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
                                     ),
                                     const SizedBox(width: 10),
                                     Flexible(child: Text(_offers[index].offerName, style: GoogleFonts.abel(fontSize: 12, color: dark, fontWeight: FontWeight.w500))),
@@ -233,7 +233,7 @@ class _OffersListState extends State<OffersList> {
                                     Container(
                                       padding: const EdgeInsets.all(4),
                                       decoration: BoxDecoration(color: purple, borderRadius: BorderRadius.circular(5)),
-                                      child: Text("OFFER TYPE", style: GoogleFonts.abel(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
+                                      child: Text("OFFER TYPE".tr, style: GoogleFonts.abel(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
                                     ),
                                     const SizedBox(width: 10),
                                     Flexible(child: Text(_offers[index].offerType.toUpperCase(), style: GoogleFonts.abel(fontSize: 12, color: dark, fontWeight: FontWeight.w500))),
@@ -245,7 +245,7 @@ class _OffersListState extends State<OffersList> {
                                     Container(
                                       padding: const EdgeInsets.all(4),
                                       decoration: BoxDecoration(color: purple, borderRadius: BorderRadius.circular(5)),
-                                      child: Text("USER ID", style: GoogleFonts.abel(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
+                                      child: Text("USER ID".tr, style: GoogleFonts.abel(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
                                     ),
                                     const SizedBox(width: 10),
                                     Flexible(child: Text(_offers[index].userID, style: GoogleFonts.abel(fontSize: 12, color: dark, fontWeight: FontWeight.w500))),
@@ -257,7 +257,7 @@ class _OffersListState extends State<OffersList> {
                                     Container(
                                       padding: const EdgeInsets.all(4),
                                       decoration: BoxDecoration(color: purple, borderRadius: BorderRadius.circular(5)),
-                                      child: Text("USERNAME", style: GoogleFonts.abel(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
+                                      child: Text("USERNAME".tr, style: GoogleFonts.abel(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
                                     ),
                                     const SizedBox(width: 10),
                                     Flexible(child: Text(_offers[index].username, style: GoogleFonts.abel(fontSize: 12, color: dark, fontWeight: FontWeight.w500))),
@@ -269,7 +269,7 @@ class _OffersListState extends State<OffersList> {
                                     Container(
                                       padding: const EdgeInsets.all(4),
                                       decoration: BoxDecoration(color: purple, borderRadius: BorderRadius.circular(5)),
-                                      child: Text("OFFER DISCOUNT", style: GoogleFonts.abel(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
+                                      child: Text("OFFER DISCOUNT".tr, style: GoogleFonts.abel(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
                                     ),
                                     const SizedBox(width: 10),
                                     Flexible(child: Text("${_offers[index].offerDiscount.toStringAsFixed(2)} %", style: GoogleFonts.abel(fontSize: 12, color: dark, fontWeight: FontWeight.w500))),
@@ -281,7 +281,7 @@ class _OffersListState extends State<OffersList> {
                                     Container(
                                       padding: const EdgeInsets.all(4),
                                       decoration: BoxDecoration(color: purple, borderRadius: BorderRadius.circular(5)),
-                                      child: Text("OFFER DATE", style: GoogleFonts.abel(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
+                                      child: Text("OFFER DATE".tr, style: GoogleFonts.abel(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
                                     ),
                                     const SizedBox(width: 10),
                                     Flexible(child: Text(_formatCustomDate(_offers[index].timestamp), style: GoogleFonts.abel(fontSize: 12, color: dark, fontWeight: FontWeight.w500))),
@@ -304,7 +304,7 @@ class _OffersListState extends State<OffersList> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       LottieBuilder.asset("assets/lotties/empty.json", reverse: true),
-                      Text("No Offers Yet!", style: GoogleFonts.abel(fontSize: 18, color: dark, fontWeight: FontWeight.w500)),
+                      Text("No Offers Yet!".tr, style: GoogleFonts.abel(fontSize: 18, color: dark, fontWeight: FontWeight.w500)),
                     ],
                   ),
                 );

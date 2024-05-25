@@ -4,6 +4,7 @@ import 'package:dabka/utils/shared.dart';
 import 'package:dabka/views/holder.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icons_plus/icons_plus.dart';
 
@@ -40,7 +41,7 @@ class _SignInState extends State<SignIn> {
           leading: IconButton(onPressed: () => Navigator.pop(context), icon: const Icon(FontAwesome.chevron_left_solid, size: 15, color: dark)),
           centerTitle: true,
           backgroundColor: white,
-          title: Text("Admin Sign-In", style: GoogleFonts.abel(fontSize: 22, color: dark, fontWeight: FontWeight.bold)),
+          title: Text("Admin Sign-In".tr, style: GoogleFonts.abel(fontSize: 22, color: dark, fontWeight: FontWeight.bold)),
           elevation: 5,
           shadowColor: dark,
         ),
@@ -68,7 +69,7 @@ class _SignInState extends State<SignIn> {
                         focusedErrorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: const BorderSide(color: grey, width: .3)),
                         hintText: "abc@xyz.com",
                         hintStyle: GoogleFonts.abel(color: grey, fontSize: 14, fontWeight: FontWeight.w500),
-                        labelText: "E-mail",
+                        labelText: "E-mail".tr,
                         labelStyle: GoogleFonts.abel(color: grey, fontSize: 14, fontWeight: FontWeight.w500),
                         prefixIcon: const IconButton(onPressed: null, icon: Icon(FontAwesome.envelope_solid, color: grey, size: 15)),
                       ),
@@ -94,7 +95,7 @@ class _SignInState extends State<SignIn> {
                         focusedErrorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: const BorderSide(color: grey, width: .3)),
                         hintText: "**********",
                         hintStyle: GoogleFonts.abel(color: grey, fontSize: 14, fontWeight: FontWeight.w500),
-                        labelText: "Password",
+                        labelText: "Password".tr,
                         labelStyle: GoogleFonts.abel(color: grey, fontSize: 14, fontWeight: FontWeight.w500),
                         prefixIcon: const IconButton(onPressed: null, icon: Icon(FontAwesome.lock_solid, color: grey, size: 15)),
                         suffixIcon: IconButton(
@@ -119,16 +120,16 @@ class _SignInState extends State<SignIn> {
                         onTap: () async {
                           //admin@gmail.com adminadmin 4kX5FdxdqjgEVIppH4EqLZBzVLP2
                           if (!_emailController.text.contains(RegExp(r'^[\w\-\.]+@([\w\-]+\.)+[\w-]{2,4}$'))) {
-                            showToast(context, "Enter a correct e-mail address", color: red);
+                            showToast(context, "Enter a correct e-mail address".tr, color: red);
                           } else if (_passwordController.text.isEmpty) {
-                            showToast(context, "Enter a correct password", color: red);
+                            showToast(context, "Enter a correct password".tr, color: red);
                           } else {
                             try {
                               _(() => _ignoreStupidity = true);
-                              showToast(context, "Please wait...");
+                              showToast(context, "Please wait...".tr);
                               await FirebaseAuth.instance.signInWithEmailAndPassword(email: _emailController.text, password: _passwordController.text);
                               Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (BuildContext context) => const Holder()), (Route route) => false);
-                              showToast(context, "Welcome back");
+                              showToast(context, "Welcome back".tr);
                               _(() => _ignoreStupidity = false);
                             } catch (e) {
                               showToast(context, e.toString(), color: red);
@@ -139,7 +140,7 @@ class _SignInState extends State<SignIn> {
                         child: Container(
                           padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 48),
                           decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: purple),
-                          child: Text("Sign-in", style: GoogleFonts.abel(color: white, fontSize: 14, fontWeight: FontWeight.bold)),
+                          child: Text("Sign-in".tr, style: GoogleFonts.abel(color: white, fontSize: 14, fontWeight: FontWeight.bold)),
                         ),
                       ),
                     );

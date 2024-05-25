@@ -6,7 +6,7 @@ import 'package:dabka/views/sign_in.dart';
 import 'package:dabka/views/offers_list.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icons_plus/icons_plus.dart';
 
@@ -29,32 +29,32 @@ class _HolderState extends State<Holder> {
 
   final List<Map<String, dynamic>> _pages = <Map<String, dynamic>>[
     <String, dynamic>{
-      "title": "Users",
+      "title": "Users".tr,
       "icon": FontAwesome.users_between_lines_solid,
       "page": const UsersList(),
     },
     <String, dynamic>{
-      "title": "Categories",
+      "title": "Categories".tr,
       "icon": FontAwesome.square_solid,
       "page": const CategoriesList(),
     },
     <String, dynamic>{
-      "title": "Orders",
+      "title": "Orders".tr,
       "icon": FontAwesome.first_order_brand,
       "page": const OrdersList(),
     },
     <String, dynamic>{
-      "title": "Chats",
+      "title": "Chats".tr,
       "icon": Bootstrap.chat_square_text_fill,
       "page": const ChatsList(),
     },
     <String, dynamic>{
-      "title": "Charts",
+      "title": "Charts".tr,
       "icon": FontAwesome.chart_pie_solid,
       "page": const Charts(),
     },
     <String, dynamic>{
-      "title": "Offers",
+      "title": "Offers".tr,
       "icon": FontAwesome.star_solid,
       "page": const OffersList(),
     },
@@ -113,7 +113,7 @@ class _HolderState extends State<Holder> {
                                   highlightColor: transparent,
                                   onTap: () => _pageController.jumpToPage(_pages.indexOf(e)),
                                   child: AnimatedContainer(
-                                    duration: 300.ms,
+                                    duration: 300.milliseconds,
                                     padding: EdgeInsets.symmetric(horizontal: _currentPage == _pages.indexOf(e) ? 10 : 0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.min,
@@ -121,7 +121,7 @@ class _HolderState extends State<Holder> {
                                         Icon(e["icon"], size: 20, color: _currentPage == _pages.indexOf(e) ? purple : dark.withOpacity(.6)),
                                         const SizedBox(height: 5),
                                         AnimatedDefaultTextStyle(
-                                          duration: 300.ms,
+                                          duration: 300.milliseconds,
                                           style: GoogleFonts.abel(
                                             fontSize: 12,
                                             color: _currentPage == _pages.indexOf(e) ? purple : dark.withOpacity(.6),

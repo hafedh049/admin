@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dabka/models/product_model.dart';
 import 'package:dabka/models/user_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:pie_chart/pie_chart.dart';
@@ -22,8 +22,8 @@ class Charts extends StatefulWidget {
 
 class _ChartsState extends State<Charts> with TickerProviderStateMixin {
   final Map<String, double> _dataMap = <String, double>{
-    "Clients": 0,
-    "Suppliers": 0,
+    "Clients".tr: 0,
+    "Suppliers".tr: 0,
   };
 
   final Map<String, double> _categoriesMap = <String, double>{};
@@ -68,11 +68,11 @@ class _ChartsState extends State<Charts> with TickerProviderStateMixin {
             tabs: <Widget>[
               Container(
                 padding: const EdgeInsets.all(8),
-                child: Text("Users Chart", style: GoogleFonts.abel(color: dark, fontSize: 18, fontWeight: FontWeight.w500)),
+                child: Text("Users Chart".tr, style: GoogleFonts.abel(color: dark, fontSize: 18, fontWeight: FontWeight.w500)),
               ),
               Container(
                 padding: const EdgeInsets.all(8),
-                child: Text("Categories Chart", style: GoogleFonts.abel(color: dark, fontSize: 18, fontWeight: FontWeight.w500)),
+                child: Text("Categories Chart".tr, style: GoogleFonts.abel(color: dark, fontSize: 18, fontWeight: FontWeight.w500)),
               ),
             ],
           ),
@@ -87,8 +87,8 @@ class _ChartsState extends State<Charts> with TickerProviderStateMixin {
                     builder: (BuildContext context, AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
                       if (snapshot.hasData && snapshot.data!.docs.isNotEmpty) {
                         _users = snapshot.data!.docs.map((QueryDocumentSnapshot<Map<String, dynamic>> e) => UserModel.fromJson(e.data())).toList();
-                        _dataMap["Clients"] = _users.where((UserModel element) => element.userType.contains("CLIENT")).length.toDouble();
-                        _dataMap["Suppliers"] = _users.where((UserModel element) => element.userType.contains("SUPPLIER")).length.toDouble();
+                        _dataMap["Clients".tr] = _users.where((UserModel element) => element.userType.contains("CLIENT")).length.toDouble();
+                        _dataMap["Suppliers".tr] = _users.where((UserModel element) => element.userType.contains("SUPPLIER")).length.toDouble();
 
                         if (_dataMap.values.every((double element) => element == 0)) {
                           return Center(
@@ -97,7 +97,7 @@ class _ChartsState extends State<Charts> with TickerProviderStateMixin {
                               mainAxisSize: MainAxisSize.min,
                               children: <Widget>[
                                 Expanded(child: LottieBuilder.asset("assets/lotties/empty.json", reverse: true)),
-                                Text("No Users Yet!", style: GoogleFonts.abel(fontSize: 18, color: dark, fontWeight: FontWeight.w500)),
+                                Text("No Users Yet!".tr, style: GoogleFonts.abel(fontSize: 18, color: dark, fontWeight: FontWeight.w500)),
                               ],
                             ),
                           );
@@ -105,14 +105,14 @@ class _ChartsState extends State<Charts> with TickerProviderStateMixin {
 
                         return PieChart(
                           dataMap: _dataMap,
-                          animationDuration: 800.ms,
+                          animationDuration: 800.milliseconds,
                           chartLegendSpacing: 32,
                           chartRadius: MediaQuery.of(context).size.width / 3.2,
                           colorList: const <Color>[purple, dark],
                           initialAngleInDegree: 0,
                           chartType: ChartType.ring,
                           ringStrokeWidth: 32,
-                          centerText: "USERS",
+                          centerText: "USERS".tr,
                           legendOptions: LegendOptions(
                             showLegendsInRow: false,
                             legendPosition: LegendPosition.right,
@@ -135,7 +135,7 @@ class _ChartsState extends State<Charts> with TickerProviderStateMixin {
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
                               Expanded(child: LottieBuilder.asset("assets/lotties/empty.json", reverse: true)),
-                              Text("No Users Yet!", style: GoogleFonts.abel(fontSize: 18, color: dark, fontWeight: FontWeight.w500)),
+                              Text("No Users Yet!".tr, style: GoogleFonts.abel(fontSize: 18, color: dark, fontWeight: FontWeight.w500)),
                             ],
                           ),
                         );
@@ -162,7 +162,7 @@ class _ChartsState extends State<Charts> with TickerProviderStateMixin {
                               mainAxisSize: MainAxisSize.min,
                               children: <Widget>[
                                 Expanded(child: LottieBuilder.asset("assets/lotties/empty.json", reverse: true)),
-                                Text("No Categories Yet!", style: GoogleFonts.abel(fontSize: 18, color: dark, fontWeight: FontWeight.w500)),
+                                Text("No Categories Yet!".tr, style: GoogleFonts.abel(fontSize: 18, color: dark, fontWeight: FontWeight.w500)),
                               ],
                             ),
                           );
@@ -170,14 +170,14 @@ class _ChartsState extends State<Charts> with TickerProviderStateMixin {
 
                         return PieChart(
                           dataMap: _categoriesMap,
-                          animationDuration: 800.ms,
+                          animationDuration: 800.milliseconds,
                           chartLegendSpacing: 32,
                           chartRadius: MediaQuery.of(context).size.width / 3.2,
                           colorList: const <Color>[purple, dark],
                           initialAngleInDegree: 0,
                           chartType: ChartType.ring,
                           ringStrokeWidth: 32,
-                          centerText: "CATEGORIES",
+                          centerText: "CATEGORIES".tr,
                           legendOptions: LegendOptions(
                             showLegendsInRow: false,
                             legendPosition: LegendPosition.right,
@@ -200,7 +200,7 @@ class _ChartsState extends State<Charts> with TickerProviderStateMixin {
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
                               Expanded(child: LottieBuilder.asset("assets/lotties/empty.json", reverse: true)),
-                              Text("No Products Yet!", style: GoogleFonts.abel(fontSize: 18, color: dark, fontWeight: FontWeight.w500)),
+                              Text("No Products Yet!".tr, style: GoogleFonts.abel(fontSize: 18, color: dark, fontWeight: FontWeight.w500)),
                             ],
                           ),
                         );

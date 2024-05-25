@@ -1,8 +1,11 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dabka/models/user_model.dart';
 import 'package:dabka/utils/callbacks.dart';
 import 'package:dabka/utils/shared.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:lottie/lottie.dart';
@@ -106,7 +109,7 @@ class _UsersListState extends State<UsersList> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisSize: MainAxisSize.min,
                                 children: <Widget>[
-                                  Text("Are you sure ?", style: GoogleFonts.abel(fontSize: 14, color: dark, fontWeight: FontWeight.w500)),
+                                  Text("Are you sure ?".tr, style: GoogleFonts.abel(fontSize: 14, color: dark, fontWeight: FontWeight.w500)),
                                   const SizedBox(height: 20),
                                   Row(
                                     children: <Widget>[
@@ -114,17 +117,17 @@ class _UsersListState extends State<UsersList> {
                                       TextButton(
                                         onPressed: () async {
                                           await FirebaseFirestore.instance.collection("users").doc(snapshot.data!.docs[index].id).delete();
-                                          showToast(context, "User deleted successfully");
+                                          showToast(context, "User deleted successfully".tr);
                                           Navigator.pop(context);
                                         },
                                         style: const ButtonStyle(backgroundColor: WidgetStatePropertyAll<Color>(purple)),
-                                        child: Text("OK", style: GoogleFonts.abel(fontSize: 12, color: white, fontWeight: FontWeight.w500)),
+                                        child: Text("OK".tr, style: GoogleFonts.abel(fontSize: 12, color: white, fontWeight: FontWeight.w500)),
                                       ),
                                       const SizedBox(width: 10),
                                       TextButton(
                                         onPressed: () => Navigator.pop(context),
                                         style: ButtonStyle(backgroundColor: WidgetStatePropertyAll<Color>(grey.withOpacity(.3))),
-                                        child: Text("CANCEL", style: GoogleFonts.abel(fontSize: 12, color: dark, fontWeight: FontWeight.w500)),
+                                        child: Text("CANCEL".tr, style: GoogleFonts.abel(fontSize: 12, color: dark, fontWeight: FontWeight.w500)),
                                       ),
                                     ],
                                   ),
@@ -165,7 +168,7 @@ class _UsersListState extends State<UsersList> {
                                     Container(
                                       padding: const EdgeInsets.all(4),
                                       decoration: BoxDecoration(color: purple, borderRadius: BorderRadius.circular(5)),
-                                      child: Text("UID", style: GoogleFonts.abel(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
+                                      child: Text("UID".tr, style: GoogleFonts.abel(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
                                     ),
                                     const SizedBox(width: 10),
                                     Flexible(child: Text(_users[index].userID, style: GoogleFonts.abel(fontSize: 12, color: dark, fontWeight: FontWeight.w500))),
@@ -177,7 +180,7 @@ class _UsersListState extends State<UsersList> {
                                     Container(
                                       padding: const EdgeInsets.all(4),
                                       decoration: BoxDecoration(color: purple, borderRadius: BorderRadius.circular(5)),
-                                      child: Text("USERNAME", style: GoogleFonts.abel(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
+                                      child: Text("USERNAME".tr, style: GoogleFonts.abel(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
                                     ),
                                     const SizedBox(width: 10),
                                     Flexible(child: Text(_users[index].username, style: GoogleFonts.abel(fontSize: 12, color: dark, fontWeight: FontWeight.w500))),
@@ -189,7 +192,7 @@ class _UsersListState extends State<UsersList> {
                                     Container(
                                       padding: const EdgeInsets.all(4),
                                       decoration: BoxDecoration(color: purple, borderRadius: BorderRadius.circular(5)),
-                                      child: Text("E-MAIL", style: GoogleFonts.abel(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
+                                      child: Text("E-MAIL".tr, style: GoogleFonts.abel(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
                                     ),
                                     const SizedBox(width: 10),
                                     Flexible(child: Text(_users[index].email.isEmpty ? "NOT SET" : _users[index].email, style: GoogleFonts.abel(fontSize: 12, color: dark, fontWeight: FontWeight.w500))),
@@ -201,7 +204,7 @@ class _UsersListState extends State<UsersList> {
                                     Container(
                                       padding: const EdgeInsets.all(4),
                                       decoration: BoxDecoration(color: purple, borderRadius: BorderRadius.circular(5)),
-                                      child: Text("PHONE NUMBER", style: GoogleFonts.abel(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
+                                      child: Text("PHONE NUMBER".tr, style: GoogleFonts.abel(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
                                     ),
                                     const SizedBox(width: 10),
                                     Flexible(child: Text(_users[index].phoneNumber, style: GoogleFonts.abel(fontSize: 12, color: dark, fontWeight: FontWeight.w500))),
@@ -213,7 +216,7 @@ class _UsersListState extends State<UsersList> {
                                     Container(
                                       padding: const EdgeInsets.all(4),
                                       decoration: BoxDecoration(color: purple, borderRadius: BorderRadius.circular(5)),
-                                      child: Text("TYPE(S)", style: GoogleFonts.abel(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
+                                      child: Text("TYPE(S)".tr, style: GoogleFonts.abel(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
                                     ),
                                     const SizedBox(width: 10),
                                     for (final String type in _users[index].userType) ...<Widget>[
@@ -239,7 +242,7 @@ class _UsersListState extends State<UsersList> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       LottieBuilder.asset("assets/lotties/empty.json", reverse: true),
-                      Text("No Users Yet!", style: GoogleFonts.abel(fontSize: 18, color: dark, fontWeight: FontWeight.w500)),
+                      Text("No Users Yet!".tr, style: GoogleFonts.abel(fontSize: 18, color: dark, fontWeight: FontWeight.w500)),
                     ],
                   ),
                 );

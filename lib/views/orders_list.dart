@@ -7,7 +7,7 @@ import 'package:dabka/utils/callbacks.dart';
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_animate/flutter_animate.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:lottie/lottie.dart';
@@ -34,11 +34,11 @@ class _OrdersListState extends State<OrdersList> {
     final dayBeforeYesterday = today.subtract(2.days);
 
     if (date.year == today.year && date.month == today.month && date.day == today.day) {
-      return 'Today, at ${formatDate(date, const <String>[hh, ':', nn, ':', ss, ' ', am])}';
+      return '${"Today, at".tr} ${formatDate(date, const <String>[hh, ':', nn, ':', ss, ' ', am])}';
     } else if (date.year == today.year && date.month == today.month && date.day == yesterday.day) {
-      return 'Yesterday, at ${formatDate(date, const <String>[hh, ':', nn, ':', ss, ' ', am])}';
+      return '${"Yesterday, at".tr} ${formatDate(date, const <String>[hh, ':', nn, ':', ss, ' ', am])}';
     } else if (date.year == today.year && date.month == today.month && date.day == dayBeforeYesterday.day) {
-      return '2 days ago, at ${formatDate(date, const <String>[hh, ':', nn, ':', ss, ' ', am])}';
+      return '${"2 days ago, at".tr} ${formatDate(date, const <String>[hh, ':', nn, ':', ss, ' ', am])}';
     } else {
       return formatDate(date, const <String>[dd, '/', mm, '/', yyyy, ' ', hh, ':', nn, ':', ss, ' ', am]);
     }
@@ -68,7 +68,7 @@ class _OrdersListState extends State<OrdersList> {
       children: <Widget>[
         Row(
           children: <Widget>[
-            Text("Orders List", style: GoogleFonts.abel(fontSize: 18, color: dark, fontWeight: FontWeight.w500)),
+            Text("Orders List".tr, style: GoogleFonts.abel(fontSize: 18, color: dark, fontWeight: FontWeight.w500)),
             const Spacer(),
           ],
         ),
@@ -91,7 +91,7 @@ class _OrdersListState extends State<OrdersList> {
                         controller: _searchController,
                         decoration: InputDecoration(
                           border: InputBorder.none,
-                          hintText: "Search",
+                          hintText: "Search".tr,
                           contentPadding: const EdgeInsets.all(16),
                           hintStyle: GoogleFonts.itim(color: grey, fontSize: 16, fontWeight: FontWeight.w500),
                         ),
@@ -140,17 +140,17 @@ class _OrdersListState extends State<OrdersList> {
                                       TextButton(
                                         onPressed: () async {
                                           await FirebaseFirestore.instance.collection("orders").doc(snapshot.data!.docs[index].id).update({"state": "CONFIRMED"});
-                                          showToast(context, "Order confirmed successfully");
+                                          showToast(context, "Order confirmed successfully".tr);
                                           Navigator.pop(context);
                                         },
                                         style: const ButtonStyle(backgroundColor: WidgetStatePropertyAll<Color>(purple)),
-                                        child: Text("OK", style: GoogleFonts.abel(fontSize: 12, color: dark, fontWeight: FontWeight.w500)),
+                                        child: Text("OK".tr, style: GoogleFonts.abel(fontSize: 12, color: dark, fontWeight: FontWeight.w500)),
                                       ),
                                       const SizedBox(width: 10),
                                       TextButton(
                                         onPressed: () => Navigator.pop(context),
                                         style: ButtonStyle(backgroundColor: WidgetStatePropertyAll<Color>(grey.withOpacity(.3))),
-                                        child: Text("CANCEL", style: GoogleFonts.abel(fontSize: 12, color: dark, fontWeight: FontWeight.w500)),
+                                        child: Text("CANCEL".tr, style: GoogleFonts.abel(fontSize: 12, color: dark, fontWeight: FontWeight.w500)),
                                       ),
                                     ],
                                   ),
@@ -173,7 +173,7 @@ class _OrdersListState extends State<OrdersList> {
                                     Container(
                                       padding: const EdgeInsets.all(8),
                                       decoration: BoxDecoration(color: purple, borderRadius: BorderRadius.circular(5)),
-                                      child: Text("ORDER ID", style: GoogleFonts.abel(fontSize: 12, color: dark, fontWeight: FontWeight.w500)),
+                                      child: Text("ORDER ID".tr, style: GoogleFonts.abel(fontSize: 12, color: dark, fontWeight: FontWeight.w500)),
                                     ),
                                     const SizedBox(width: 10),
                                     Flexible(child: Text(_orders[index].orderID, style: GoogleFonts.abel(fontSize: 12, color: dark, fontWeight: FontWeight.w500))),
@@ -185,7 +185,7 @@ class _OrdersListState extends State<OrdersList> {
                                     Container(
                                       padding: const EdgeInsets.all(8),
                                       decoration: BoxDecoration(color: purple, borderRadius: BorderRadius.circular(5)),
-                                      child: Text("OWNER ID", style: GoogleFonts.abel(fontSize: 12, color: dark, fontWeight: FontWeight.w500)),
+                                      child: Text("OWNER ID".tr, style: GoogleFonts.abel(fontSize: 12, color: dark, fontWeight: FontWeight.w500)),
                                     ),
                                     const SizedBox(width: 10),
                                     Flexible(child: Text(_orders[index].ownerID, style: GoogleFonts.abel(fontSize: 12, color: dark, fontWeight: FontWeight.w500))),
@@ -197,7 +197,7 @@ class _OrdersListState extends State<OrdersList> {
                                     Container(
                                       padding: const EdgeInsets.all(8),
                                       decoration: BoxDecoration(color: purple, borderRadius: BorderRadius.circular(5)),
-                                      child: Text("OWNER NAME", style: GoogleFonts.abel(fontSize: 12, color: dark, fontWeight: FontWeight.w500)),
+                                      child: Text("OWNER NAME".tr, style: GoogleFonts.abel(fontSize: 12, color: dark, fontWeight: FontWeight.w500)),
                                     ),
                                     const SizedBox(width: 10),
                                     Flexible(child: Text(_orders[index].ownerName, style: GoogleFonts.abel(fontSize: 12, color: dark, fontWeight: FontWeight.w500))),
@@ -209,7 +209,7 @@ class _OrdersListState extends State<OrdersList> {
                                     Container(
                                       padding: const EdgeInsets.all(8),
                                       decoration: BoxDecoration(color: purple, borderRadius: BorderRadius.circular(5)),
-                                      child: Text("ORDER DATE", style: GoogleFonts.abel(fontSize: 10, color: dark, fontWeight: FontWeight.w500)),
+                                      child: Text("ORDER DATE".tr, style: GoogleFonts.abel(fontSize: 10, color: dark, fontWeight: FontWeight.w500)),
                                     ),
                                     const SizedBox(width: 10),
                                     Text(_formatCustomDate(_orders[index].timestamp), style: GoogleFonts.abel(fontSize: 12, color: dark, fontWeight: FontWeight.w500)),
@@ -287,14 +287,13 @@ class _OrdersListState extends State<OrdersList> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       LottieBuilder.asset("assets/lotties/empty.json", reverse: true),
-                      Text("No Orders Yet!", style: GoogleFonts.abel(fontSize: 18, color: dark, fontWeight: FontWeight.w500)),
+                      Text("No Orders Yet!".tr, style: GoogleFonts.abel(fontSize: 18, color: dark, fontWeight: FontWeight.w500)),
                     ],
                   ),
                 );
               } else if (snapshot.connectionState == ConnectionState.waiting) {
                 return const Wait();
               } else {
-                Clipboard.setData(ClipboardData(text: snapshot.error.toString()));
                 return ErrorScreen(error: snapshot.error.toString());
               }
             },

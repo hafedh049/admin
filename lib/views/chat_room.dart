@@ -6,7 +6,7 @@ import 'package:dabka/utils/shared.dart';
 import 'package:date_format/date_format.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:uuid/uuid.dart';
@@ -75,7 +75,7 @@ class _ChatRoomState extends State<ChatRoom> {
   void _scrollToBottom() {
     _scrollController.animateTo(
       _scrollController.position.maxScrollExtent,
-      duration: 300.ms,
+      duration: 300.milliseconds,
       curve: Curves.easeOut,
     );
   }
@@ -87,11 +87,11 @@ class _ChatRoomState extends State<ChatRoom> {
     final dayBeforeYesterday = today.subtract(2.days);
 
     if (date.year == today.year && date.month == today.month && date.day == today.day) {
-      return 'Today, at ${formatDate(date, const <String>[hh, ':', nn, ':', ss, ' ', am])}';
+      return '${"Today, at".tr} ${formatDate(date, const <String>[hh, ':', nn, ':', ss, ' ', am])}';
     } else if (date.year == today.year && date.month == today.month && date.day == yesterday.day) {
-      return 'Yesterday, at ${formatDate(date, const <String>[hh, ':', nn, ':', ss, ' ', am])}';
+      return '${"Yesterday, at".tr} ${formatDate(date, const <String>[hh, ':', nn, ':', ss, ' ', am])}';
     } else if (date.year == today.year && date.month == today.month && date.day == dayBeforeYesterday.day) {
-      return '2 days ago, at ${formatDate(date, const <String>[hh, ':', nn, ':', ss, ' ', am])}';
+      return '${"2 days ago, at".tr} ${formatDate(date, const <String>[hh, ':', nn, ':', ss, ' ', am])}';
     } else {
       return formatDate(date, const <String>[dd, '/', mm, '/', yyyy, ' ', hh, ':', nn, ':', ss, ' ', am]);
     }
@@ -192,7 +192,7 @@ class _ChatRoomState extends State<ChatRoom> {
                               child: TextField(
                                 controller: _messageController,
                                 decoration: InputDecoration(
-                                  hintText: 'Type a message',
+                                  hintText: 'Type a message'.tr,
                                   hintStyle: GoogleFonts.abel(color: grey),
                                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(30), borderSide: BorderSide.none),
                                 ),

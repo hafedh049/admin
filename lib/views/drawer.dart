@@ -1,7 +1,7 @@
 import 'package:dabka/utils/shared.dart';
-import 'package:dabka/views/about_us.dart';
 import 'package:dabka/views/settings.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icons_plus/icons_plus.dart';
 
@@ -19,19 +19,14 @@ class _DDrawerState extends State<DDrawer> {
     _tiles = <Map<String, dynamic>>[
       <String, dynamic>{
         "icon": FontAwesome.house_chimney_solid,
-        "tile": "Home",
+        "tile": "Home".tr,
         "page": () => Navigator.pop(context),
       },
       <String, dynamic>{"tile": "DIVIDER"},
       <String, dynamic>{
         "icon": FontAwesome.gear_solid,
-        "tile": "Settings",
+        "tile": "Settings".tr,
         "page": const Settings(),
-      },
-      <String, dynamic>{
-        "icon": Bootstrap.hexagon_half,
-        "tile": "About Us",
-        "page": const AboutUs(),
       },
     ];
     super.initState();

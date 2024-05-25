@@ -6,7 +6,7 @@ import 'package:dabka/models/chat_head_model.dart';
 import 'package:date_format/date_format.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../utils/helpers/error.dart';
@@ -30,11 +30,11 @@ class _ChatListState extends State<ChatsList> {
     final dayBeforeYesterday = today.subtract(2.days);
 
     if (date.year == today.year && date.month == today.month && date.day == today.day) {
-      return 'Today, at ${formatDate(date, const <String>[hh, ':', nn, ':', ss, ' ', am])}';
+      return '${"Today, at".tr} ${formatDate(date, const <String>[hh, ':', nn, ':', ss, ' ', am])}';
     } else if (date.year == today.year && date.month == today.month && date.day == yesterday.day) {
-      return 'Yesterday, at ${formatDate(date, const <String>[hh, ':', nn, ':', ss, ' ', am])}';
+      return '${"Yesterday, at".tr} ${formatDate(date, const <String>[hh, ':', nn, ':', ss, ' ', am])}';
     } else if (date.year == today.year && date.month == today.month && date.day == dayBeforeYesterday.day) {
-      return '2 days ago, at ${formatDate(date, const <String>[hh, ':', nn, ':', ss, ' ', am])}';
+      return '${"2 days ago, at".tr} ${formatDate(date, const <String>[hh, ':', nn, ':', ss, ' ', am])}';
     } else {
       return formatDate(date, const <String>[dd, '/', mm, '/', yyyy, ' ', hh, ':', nn, ':', ss, ' ', am]);
     }
@@ -47,7 +47,7 @@ class _ChatListState extends State<ChatsList> {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         const SizedBox(height: 10),
-        Text("Old Chats", style: GoogleFonts.abel(color: dark, fontSize: 22, fontWeight: FontWeight.w500)),
+        Text("Old Chats".tr, style: GoogleFonts.abel(color: dark, fontSize: 22, fontWeight: FontWeight.w500)),
         const SizedBox(height: 20),
         Expanded(
           child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(

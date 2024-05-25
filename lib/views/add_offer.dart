@@ -10,7 +10,7 @@ import 'package:dabka/utils/shared.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:image_picker/image_picker.dart';
@@ -57,7 +57,7 @@ class _AddOfferState extends State<AddOffer> {
       backgroundColor: white,
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Add Offer", style: GoogleFonts.poppins(color: dark, fontSize: 20)),
+        title: Text("Add Offer".tr, style: GoogleFonts.poppins(color: dark, fontSize: 20)),
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
           icon: const Icon(FontAwesome.chevron_left_solid, size: 15, color: purple),
@@ -88,7 +88,7 @@ class _AddOfferState extends State<AddOffer> {
                           child: AnimatedContainer(
                             width: MediaQuery.sizeOf(context).width,
                             height: 150,
-                            duration: 300.ms,
+                            duration: 300.milliseconds,
                             decoration: BoxDecoration(
                               color: white,
                               borderRadius: BorderRadius.circular(15),
@@ -124,14 +124,14 @@ class _AddOfferState extends State<AddOffer> {
                               elevation: 6,
                               shadowColor: dark,
                               child: CustomDropdown<CategoryModel>.search(
-                                hintText: 'Pick a category',
+                                hintText: 'Pick a category'.tr,
                                 items: _categories,
                                 excludeSelected: false,
                                 initialItem: _categories.first,
                                 onChanged: (CategoryModel value) => _selectedCategory = value,
                               ),
                             ),
-                            Text("Offer Name", style: GoogleFonts.abel(fontSize: 16, color: dark, fontWeight: FontWeight.w500)),
+                            Text("Offer Name".tr, style: GoogleFonts.abel(fontSize: 16, color: dark, fontWeight: FontWeight.w500)),
                             const SizedBox(height: 10),
                             SizedBox(
                               height: 40,
@@ -145,16 +145,16 @@ class _AddOfferState extends State<AddOffer> {
                                   focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: const BorderSide(color: grey, width: .3)),
                                   enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: const BorderSide(color: grey, width: .3)),
                                   focusedErrorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: const BorderSide(color: grey, width: .3)),
-                                  hintText: "Offer",
+                                  hintText: "Offer".tr,
                                   hintStyle: GoogleFonts.abel(color: grey, fontSize: 14, fontWeight: FontWeight.w500),
-                                  labelText: "Enter the offer name",
+                                  labelText: "Enter the offer name".tr,
                                   labelStyle: GoogleFonts.abel(color: grey, fontSize: 14, fontWeight: FontWeight.w500),
                                   prefixIcon: const IconButton(onPressed: null, icon: Icon(FontAwesome.user, color: grey, size: 15)),
                                 ),
                               ),
                             ),
                             const SizedBox(height: 10),
-                            Text("Offer Type", style: GoogleFonts.abel(fontSize: 16, color: dark, fontWeight: FontWeight.w500)),
+                            Text("Offer Type".tr, style: GoogleFonts.abel(fontSize: 16, color: dark, fontWeight: FontWeight.w500)),
                             const SizedBox(height: 10),
                             SizedBox(
                               height: 40,
@@ -169,9 +169,9 @@ class _AddOfferState extends State<AddOffer> {
                                   focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: const BorderSide(color: grey, width: .3)),
                                   enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: const BorderSide(color: grey, width: .3)),
                                   focusedErrorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: const BorderSide(color: grey, width: .3)),
-                                  hintText: "Offer Type",
+                                  hintText: "Offer Type".tr,
                                   hintStyle: GoogleFonts.abel(color: grey, fontSize: 14, fontWeight: FontWeight.w500),
-                                  labelText: "Pick the offer type",
+                                  labelText: "Pick the offer type".tr,
                                   labelStyle: GoogleFonts.abel(color: grey, fontSize: 14, fontWeight: FontWeight.w500),
                                   prefixIcon: const IconButton(onPressed: null, icon: Icon(FontAwesome.user, color: grey, size: 15)),
                                 ),
@@ -219,15 +219,15 @@ class _AddOfferState extends State<AddOffer> {
                               highlightColor: transparent,
                               onTap: () async {
                                 if (_offerNameController.text.trim().isEmpty) {
-                                  showToast(context, "Offer name is required", color: red);
+                                  showToast(context, "Offer name is required".tr, color: red);
                                 } else if (_max == 0) {
-                                  showToast(context, "Why are you doing a discount then ?", color: red);
+                                  showToast(context, "Why are you doing a discount then ?".tr, color: red);
                                 } else if (_max == 100) {
-                                  showToast(context, "Are you serious ?", color: red);
+                                  showToast(context, "Are you serious ?".tr, color: red);
                                 } else {
                                   try {
                                     _(() => _ignoreStupidity = true);
-                                    showToast(context, "Please wait...");
+                                    showToast(context, "Please wait...".tr);
                                     String path = "";
 
                                     final String offerID = const Uuid().v8();
@@ -255,7 +255,7 @@ class _AddOfferState extends State<AddOffer> {
                                     _offerNameController.clear();
                                     _offerImageKey.currentState!.setState(() => _banner = null);
 
-                                    showToast(context, "Offer Created Successfully");
+                                    showToast(context, "Offer Created Successfully".tr);
                                     _(() => _ignoreStupidity = false);
                                   } catch (e) {
                                     showToast(context, e.toString(), color: red);
@@ -266,7 +266,7 @@ class _AddOfferState extends State<AddOffer> {
                               child: Container(
                                 padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 48),
                                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: purple),
-                                child: Text("Add Offer", style: GoogleFonts.abel(color: white, fontSize: 14, fontWeight: FontWeight.bold)),
+                                child: Text("Add Offer".tr, style: GoogleFonts.abel(color: white, fontSize: 14, fontWeight: FontWeight.bold)),
                               ),
                             ),
                           );
@@ -283,7 +283,7 @@ class _AddOfferState extends State<AddOffer> {
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     LottieBuilder.asset("assets/lotties/empty.json", reverse: true),
-                    Text("Sorry you can't add an offer without the existance of a category", style: GoogleFonts.abel(fontSize: 18, color: dark, fontWeight: FontWeight.w500)),
+                    Text("Sorry you can't add an offer without the existance of a category".tr, style: GoogleFonts.abel(fontSize: 18, color: dark, fontWeight: FontWeight.w500)),
                   ],
                 ),
               );
