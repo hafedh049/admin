@@ -27,39 +27,6 @@ class _HolderState extends State<Holder> {
 
   final PageController _pageController = PageController();
 
-  final List<Map<String, dynamic>> _pages = <Map<String, dynamic>>[
-    <String, dynamic>{
-      "title": "Users".tr,
-      "icon": FontAwesome.users_between_lines_solid,
-      "page": const UsersList(),
-    },
-    <String, dynamic>{
-      "title": "Categories".tr,
-      "icon": FontAwesome.square_solid,
-      "page": const CategoriesList(),
-    },
-    <String, dynamic>{
-      "title": "Orders".tr,
-      "icon": FontAwesome.first_order_brand,
-      "page": const OrdersList(),
-    },
-    <String, dynamic>{
-      "title": "Chats".tr,
-      "icon": Bootstrap.chat_square_text_fill,
-      "page": const ChatsList(),
-    },
-    <String, dynamic>{
-      "title": "Charts".tr,
-      "icon": FontAwesome.chart_pie_solid,
-      "page": const Charts(),
-    },
-    <String, dynamic>{
-      "title": "Offers".tr,
-      "icon": FontAwesome.star_solid,
-      "page": const OffersList(),
-    },
-  ];
-
   int _currentPage = 0;
 
   @override
@@ -70,6 +37,38 @@ class _HolderState extends State<Holder> {
 
   @override
   Widget build(BuildContext context) {
+    final List<Map<String, dynamic>> pages = <Map<String, dynamic>>[
+      <String, dynamic>{
+        "title": "Users".tr,
+        "icon": FontAwesome.users_between_lines_solid,
+        "page": const UsersList(),
+      },
+      <String, dynamic>{
+        "title": "Categories".tr,
+        "icon": FontAwesome.square_solid,
+        "page": const CategoriesList(),
+      },
+      <String, dynamic>{
+        "title": "Orders".tr,
+        "icon": FontAwesome.first_order_brand,
+        "page": const OrdersList(),
+      },
+      <String, dynamic>{
+        "title": "Chats".tr,
+        "icon": Bootstrap.chat_square_text_fill,
+        "page": const ChatsList(),
+      },
+      <String, dynamic>{
+        "title": "Charts".tr,
+        "icon": FontAwesome.chart_pie_solid,
+        "page": const Charts(),
+      },
+      <String, dynamic>{
+        "title": "Offers".tr,
+        "icon": FontAwesome.star_solid,
+        "page": const OffersList(),
+      },
+    ];
     return FirebaseAuth.instance.currentUser == null
         ? const SignIn()
         : GestureDetector(
@@ -89,8 +88,8 @@ class _HolderState extends State<Holder> {
                   physics: const NeverScrollableScrollPhysics(),
                   controller: _pageController,
                   onPageChanged: (int page) => _menuKey.currentState!.setState(() => _currentPage = page),
-                  itemBuilder: (BuildContext context, int index) => _pages[index]["page"],
-                  itemCount: _pages.length,
+                  itemBuilder: (BuildContext context, int index) => pages[index]["page"],
+                  itemCount: pages.length,
                 ),
               ),
               bottomNavigationBar: StatefulBuilder(
@@ -105,31 +104,31 @@ class _HolderState extends State<Holder> {
                         padding: const EdgeInsets.all(8),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: _pages
+                          children: pages
                               .map(
                                 (Map<String, dynamic> e) => InkWell(
                                   hoverColor: transparent,
                                   splashColor: transparent,
                                   highlightColor: transparent,
-                                  onTap: () => _pageController.jumpToPage(_pages.indexOf(e)),
+                                  onTap: () => _pageController.jumpToPage(pages.indexOf(e)),
                                   child: AnimatedContainer(
                                     duration: 300.milliseconds,
-                                    padding: EdgeInsets.symmetric(horizontal: _currentPage == _pages.indexOf(e) ? 10 : 0),
+                                    padding: EdgeInsets.symmetric(horizontal: _currentPage == pages.indexOf(e) ? 10 : 0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.min,
                                       children: <Widget>[
-                                        Icon(e["icon"], size: 20, color: _currentPage == _pages.indexOf(e) ? purple : dark.withOpacity(.6)),
+                                        Icon(e["icon"], size: 20, color: _currentPage == pages.indexOf(e) ? purple : dark.withOpacity(.6)),
                                         const SizedBox(height: 5),
                                         AnimatedDefaultTextStyle(
                                           duration: 300.milliseconds,
                                           style: GoogleFonts.abel(
                                             fontSize: 12,
-                                            color: _currentPage == _pages.indexOf(e) ? purple : dark.withOpacity(.6),
+                                            color: _currentPage == pages.indexOf(e) ? purple : dark.withOpacity(.6),
                                             fontWeight: _currentPage == e["title"] ? FontWeight.bold : FontWeight.w500,
                                           ),
                                           child: Text(e["title"]),
                                         ),
-                                        if (_currentPage == _pages.indexOf(e)) ...<Widget>[
+                                        if (_currentPage == pages.indexOf(e)) ...<Widget>[
                                           const SizedBox(height: 5),
                                           Container(color: purple, height: 2, width: 10),
                                         ],

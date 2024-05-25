@@ -41,7 +41,7 @@ class _UsersListState extends State<UsersList> {
       children: <Widget>[
         Row(
           children: <Widget>[
-            Text("Users List", style: GoogleFonts.abel(fontSize: 18, color: dark, fontWeight: FontWeight.w500)),
+            Text("Users List".tr, style: GoogleFonts.abel(fontSize: 18, color: dark, fontWeight: FontWeight.w500)),
             const Spacer(),
             IconButton(
               onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const AddUser())),
@@ -68,7 +68,7 @@ class _UsersListState extends State<UsersList> {
                         controller: _searchController,
                         decoration: InputDecoration(
                           border: InputBorder.none,
-                          hintText: "Search",
+                          hintText: "Search".tr,
                           contentPadding: const EdgeInsets.all(16),
                           hintStyle: GoogleFonts.itim(color: grey, fontSize: 16, fontWeight: FontWeight.w500),
                         ),
