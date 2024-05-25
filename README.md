@@ -1,2 +1,2 @@
-# admin
-Dabka's Admin Panel
+# dabka
+A wedding android application built with Flutter and Firebase

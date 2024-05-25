@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "96485031528",
+    "project_id": "dabka-5aec6",
+    "storage_bucket": "dabka-5aec6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:96485031528:android:85e4ffecda18ab498945dd",
+        "android_client_info": {
+          "package_name": "com.example.dabka"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyv0OGE2Wx8DjmclF2IL346kPFyTHFzvs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
