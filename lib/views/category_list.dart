@@ -114,7 +114,26 @@ class _CategoriesListState extends State<CategoriesList> {
                                       const Spacer(),
                                       TextButton(
                                         onPressed: () async {
-                                          await FirebaseFirestore.instance.collection("categories").doc(snapshot.data!.docs[index].id).delete();
+                                          final QuerySnapshot<Map<String, dynamic>> products = await FirebaseFirestore.instance.collection("products").where("categoryID", isEqualTo: _categories[index].categoryID).get();
+                                          final QuerySnapshot<Map<String, dynamic>> users = await FirebaseFirestore.instance.collection("users").where("categoryID", isEqualTo: _categories[index].categoryID).get();
+                                          final QuerySnapshot<Map<String, dynamic>> offers = await FirebaseFirestore.instance.collection("offers").where("categoryID", isEqualTo: _categories[index].categoryID).get();
+
+                                          await Future.wait(
+                                            <Future>[
+                                              for (final QueryDocumentSnapshot<Map<String, dynamic>> product in products.docs) product.reference.delete(),
+                                              for (final QueryDocumentSnapshot<Map<String, dynamic>> user in users.docs)
+                                                user.reference.update(
+                                                  <String, dynamic>{
+                                                    'userType': const <String>['CLIENT'],
+                                                    'categoryID': '',
+                                                    'categoryName': '',
+                                                  },
+                                                ),
+                                              for (final QueryDocumentSnapshot<Map<String, dynamic>> offer in offers.docs) offer.reference.delete(),
+                                              FirebaseFirestore.instance.collection("categories").doc(snapshot.data!.docs[index].id).delete(),
+                                            ],
+                                          );
+
                                           showToast(context, "Category deleted successfully".tr);
                                           Navigator.pop(context);
                                         },

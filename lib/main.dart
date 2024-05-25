@@ -20,8 +20,8 @@ class Main extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      locale: const Locale('en', 'US'),
-      fallbackLocale: const Locale('en', 'US'),
+      locale: const Locale('ar', 'AR'),
+      fallbackLocale: const Locale('ar', 'AR'),
       translations: Translation(),
       home: FutureBuilder<bool>(
         future: init(),

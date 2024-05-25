@@ -3,10 +3,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dabka/models/order_model.dart';
 import 'package:dabka/models/product_model.dart';
+import 'package:dabka/models/user_model.dart';
 import 'package:dabka/utils/callbacks.dart';
 import 'package:date_format/date_format.dart';
+import 'package:emailjs/emailjs.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icons_plus/icons_plus.dart';
@@ -132,16 +133,40 @@ class _OrdersListState extends State<OrdersList> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisSize: MainAxisSize.min,
                                 children: <Widget>[
-                                  Text("Are you sure you want to confirm the order ? There is no turning back after this operation", style: GoogleFonts.abel(fontSize: 14, color: dark, fontWeight: FontWeight.w500)),
+                                  Text("Are you sure you want to confirm the order ? There is no turning back after this operation".tr, style: GoogleFonts.abel(fontSize: 14, color: dark, fontWeight: FontWeight.w500)),
                                   const SizedBox(height: 20),
                                   Row(
                                     children: <Widget>[
                                       const Spacer(),
                                       TextButton(
                                         onPressed: () async {
-                                          await FirebaseFirestore.instance.collection("orders").doc(snapshot.data!.docs[index].id).update({"state": "CONFIRMED"});
-                                          showToast(context, "Order confirmed successfully".tr);
-                                          Navigator.pop(context);
+                                          try {
+                                            final DocumentSnapshot<Map<String, dynamic>> doc = await FirebaseFirestore.instance.collection('users').doc(_orders[index].ownerID).get();
+                                            UserModel userModel = UserModel.fromJson(doc.data()!);
+                                            final Map<String, String> templateParams = <String, String>{
+                                              'username': userModel.username.toUpperCase(),
+                                              'to': userModel.email,
+                                              'subject': 'ORDER CONFIRMATION',
+                                              "message": '',
+                                            };
+                                            await Future.wait(
+                                              <Future>[
+                                                EmailJS.send(
+                                                  'service_l3saemi',
+                                                  'template_if571r6',
+                                                  templateParams,
+                                                  const Options(publicKey: 'Q63Rs2gA9msOLDXPm', privateKey: '_oQ4U9Vqj0xKwbFeT_b-9'),
+                                                ),
+                                                FirebaseFirestore.instance.collection("orders").doc(snapshot.data!.docs[index].id).update({"state": "CONFIRMED"})
+                                              ],
+                                            );
+
+                                            showToast(context, 'E-mail sent.');
+                                            showToast(context, "Order confirmed successfully".tr);
+                                            Navigator.pop(context);
+                                          } catch (error) {
+                                            showToast(context, error.toString());
+                                          }
                                         },
                                         style: const ButtonStyle(backgroundColor: WidgetStatePropertyAll<Color>(purple)),
                                         child: Text("OK".tr, style: GoogleFonts.abel(fontSize: 12, color: dark, fontWeight: FontWeight.w500)),

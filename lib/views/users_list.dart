@@ -116,6 +116,18 @@ class _UsersListState extends State<UsersList> {
                                       const Spacer(),
                                       TextButton(
                                         onPressed: () async {
+                                          final QuerySnapshot<Map<String, dynamic>> products = await FirebaseFirestore.instance.collection("products").where("supplierID", isEqualTo: _users[index].userID).get();
+                                          for (final QueryDocumentSnapshot<Map<String, dynamic>> prod in products.docs) {
+                                            final QuerySnapshot<Map<String, dynamic>> reviews = await FirebaseFirestore.instance.collection("reviews").where("productID", isEqualTo: prod.get('productID')).get();
+                                            for (final QueryDocumentSnapshot<Map<String, dynamic>> review in reviews.docs) {
+                                              await review.reference.delete();
+                                            }
+                                          }
+
+                                          for (final QueryDocumentSnapshot<Map<String, dynamic>> prod in products.docs) {
+                                            await prod.reference.delete();
+                                          }
+
                                           await FirebaseFirestore.instance.collection("users").doc(snapshot.data!.docs[index].id).delete();
                                           showToast(context, "User deleted successfully".tr);
                                           Navigator.pop(context);

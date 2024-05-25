@@ -80,7 +80,7 @@ class _HolderState extends State<Holder> {
               appBar: AppBar(
                 centerTitle: true,
                 backgroundColor: white,
-                title: Text(appTitle, style: GoogleFonts.abel(fontSize: 22, fontWeight: FontWeight.bold, color: purple)),
+                title: Text('Dabka'.tr, style: GoogleFonts.abel(fontSize: 22, fontWeight: FontWeight.bold, color: purple)),
                 leading: IconButton(onPressed: () => _drawerKey.currentState!.openDrawer(), icon: const Icon(FontAwesome.bars_solid, size: 20, color: purple)),
               ),
               body: Padding(

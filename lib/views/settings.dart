@@ -51,8 +51,9 @@ class _SettingsState extends State<Settings> {
                         child: AnimatedToggleSwitch<String>.rolling(
                           current: settingsBox!.get("language"),
                           values: const <String>["en", "fr", "ar"],
-                          onChanged: (String value) {
+                          onChanged: (String value) async {
                             settingsBox!.put("language", value);
+                            await Get.updateLocale(Locale(value));
                             _(() {});
                           },
                           iconList: <Container>[
@@ -92,6 +93,7 @@ class _SettingsState extends State<Settings> {
                           values: const <String>["light", "dark"],
                           onChanged: (String value) {
                             settingsBox!.put("theme", value);
+                            Get.changeTheme(value == "light" ? ThemeData.light() : ThemeData.dark());
                             _(() {});
                           },
                           iconList: <Container>[
