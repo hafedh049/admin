@@ -109,4 +109,10 @@ final Map<String, String> en = <String, String>{
   "Welcome back": "Welcome back",
   "Sign-in": "Sign-in",
   "Users List": "Users List",
+  "حجامات": "Cupping",
+  "روب": "Robes",
+  "قاعات": "Halls",
+  "مصور": "Photographer",
+  "ديكور": "Decoration",
+  "رحلات": "Trips",
 };

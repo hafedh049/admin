@@ -14,7 +14,6 @@ Future<bool> init() async {
   if (settingsBox!.isEmpty) {
     await settingsBox!.putAll(
       <String, dynamic>{
-        "first_time": true,
         "theme": "light",
         "language": "en",
       },
@@ -22,9 +21,9 @@ Future<bool> init() async {
   }
   await Firebase.initializeApp(
     options: const FirebaseOptions(
-      apiKey: 'AIzaSyDyv0OGE2Wx8DjmclF2IL346kPFyTHFzvs',
-      appId: '1:96485031528:android:85e4ffecda18ab498945dd',
-      messagingSenderId: '96485031528	',
+      apiKey: "AIzaSyDyv0OGE2Wx8DjmclF2IL346kPFyTHFzvs",
+      appId: "1:96485031528:android:4590bd10e7b06f578945dd",
+      messagingSenderId: '96485031528',
       projectId: 'dabka-5aec6',
       storageBucket: 'dabka-5aec6.appspot.com',
     ),

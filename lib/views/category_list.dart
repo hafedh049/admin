@@ -200,7 +200,7 @@ class _CategoriesListState extends State<CategoriesList> {
                                       child: Text("CATEGORY NAME".tr, style: GoogleFonts.abel(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
                                     ),
                                     const SizedBox(width: 10),
-                                    Flexible(child: Text(_categories[index].categoryName, style: GoogleFonts.abel(fontSize: 12, color: dark, fontWeight: FontWeight.w500))),
+                                    Flexible(child: Text(_categories[index].categoryName.tr, style: GoogleFonts.abel(fontSize: 12, color: dark, fontWeight: FontWeight.w500))),
                                   ],
                                 ),
                               ],

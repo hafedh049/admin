@@ -123,13 +123,15 @@ class _AddOfferState extends State<AddOffer> {
                             Card(
                               elevation: 6,
                               shadowColor: dark,
-                              child: CustomDropdown<CategoryModel>.search(
-                                hintText: 'Pick a category'.tr,
-                                items: _categories,
-                                excludeSelected: false,
-                                initialItem: _categories.first,
-                                onChanged: (CategoryModel value) => _selectedCategory = value,
-                              ),
+                              child: _categories.length == 1
+                                  ? Text(_selectedCategory!.categoryName, style: GoogleFonts.abel(fontSize: 16, color: dark, fontWeight: FontWeight.w500))
+                                  : CustomDropdown<CategoryModel>.search(
+                                      hintText: 'Pick a category'.tr,
+                                      items: _categories,
+                                      excludeSelected: false,
+                                      initialItem: _categories[_categories.indexOf(_selectedCategory!)],
+                                      onChanged: (CategoryModel value) => _selectedCategory = value,
+                                    ),
                             ),
                             Text("Offer Name".tr, style: GoogleFonts.abel(fontSize: 16, color: dark, fontWeight: FontWeight.w500)),
                             const SizedBox(height: 10),

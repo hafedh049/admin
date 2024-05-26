@@ -6,7 +6,6 @@ class ProductModel with CustomDropdownListFilter {
   final String supplierID;
   final String productID;
   final String productName;
-  final String productType;
   final String productDescription;
   final double productBuyPrice;
   final double productSellPrice;
@@ -20,7 +19,6 @@ class ProductModel with CustomDropdownListFilter {
     required this.supplierID,
     required this.productID,
     required this.productName,
-    required this.productType,
     required this.productDescription,
     required this.productBuyPrice,
     required this.productSellPrice,
@@ -36,7 +34,6 @@ class ProductModel with CustomDropdownListFilter {
       supplierID: json['supplierID'],
       productID: json['productID'],
       productName: json['productName'],
-      productType: json['productType'],
       productDescription: json['productDescription'],
       productBuyPrice: json['productBuyPrice'],
       productSellPrice: json['productSellPrice'],
@@ -53,7 +50,6 @@ class ProductModel with CustomDropdownListFilter {
       'supplierID': supplierID,
       'productID': productID,
       'productName': productName,
-      'productType': productType,
       'productDescription': productDescription,
       'productBuyPrice': productBuyPrice,
       'productSellPrice': productSellPrice,

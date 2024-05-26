@@ -21,11 +21,6 @@ class Charts extends StatefulWidget {
 }
 
 class _ChartsState extends State<Charts> with TickerProviderStateMixin {
-  final Map<String, double> _dataMap = <String, double>{
-    "Clients".tr: 0,
-    "Suppliers".tr: 0,
-  };
-
   final Map<String, double> _categoriesMap = <String, double>{};
 
   List<UserModel> _users = <UserModel>[];
@@ -59,6 +54,10 @@ class _ChartsState extends State<Charts> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    final Map<String, double> dataMap = <String, double>{
+      "Clients".tr: 0,
+      "Suppliers".tr: 0,
+    };
     return Scaffold(
       body: Column(
         children: <Widget>[
@@ -87,10 +86,10 @@ class _ChartsState extends State<Charts> with TickerProviderStateMixin {
                     builder: (BuildContext context, AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
                       if (snapshot.hasData && snapshot.data!.docs.isNotEmpty) {
                         _users = snapshot.data!.docs.map((QueryDocumentSnapshot<Map<String, dynamic>> e) => UserModel.fromJson(e.data())).toList();
-                        _dataMap["Clients".tr] = _users.where((UserModel element) => element.userType.contains("CLIENT")).length.toDouble();
-                        _dataMap["Suppliers".tr] = _users.where((UserModel element) => element.userType.contains("SUPPLIER")).length.toDouble();
+                        dataMap["Clients".tr] = _users.where((UserModel element) => element.userType.contains("CLIENT")).length.toDouble();
+                        dataMap["Suppliers".tr] = _users.where((UserModel element) => element.userType.contains("SUPPLIER")).length.toDouble();
 
-                        if (_dataMap.values.every((double element) => element == 0)) {
+                        if (dataMap.values.every((double element) => element == 0)) {
                           return Center(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -104,7 +103,7 @@ class _ChartsState extends State<Charts> with TickerProviderStateMixin {
                         }
 
                         return PieChart(
-                          dataMap: _dataMap,
+                          dataMap: dataMap,
                           animationDuration: 800.milliseconds,
                           chartLegendSpacing: 32,
                           chartRadius: MediaQuery.of(context).size.width / 3.2,

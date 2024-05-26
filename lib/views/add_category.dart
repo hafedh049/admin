@@ -68,6 +68,8 @@ class _AddCategoryState extends State<AddCategory> {
                           final CroppedFile? finalFile = await ImageCropper().cropImage(sourcePath: file.path);
                           if (finalFile != null) {
                             _(() => _image = File(finalFile.path));
+                          } else {
+                            _(() => _image = File(file.path));
                           }
                         }
                       },

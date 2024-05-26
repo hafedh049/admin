@@ -108,4 +108,10 @@ final Map<String, String> fr = <String, String>{
   "Admin Sign-In": "Connexion administrateur",
   "Welcome back": "Bon retour",
   "Sign-in": "Connexion",
+  "حجامات": "Ventouses",
+  "روب": "Peignoir",
+  "قاعات": "Salles",
+  "مصور": "Photographe",
+  "ديكور": "Décoration",
+  "رحلات": "Voyages",
 };
