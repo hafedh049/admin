@@ -146,11 +146,11 @@ class _ChartsState extends State<Charts> with TickerProviderStateMixin {
                     },
                   ),
                   StreamBuilder<List>(
-                    stream: StreamGroup.mergeBroadcast<List>([_fetchCategories(), _fetchProducts()]),
+                    stream: StreamZip(<Stream>[_fetchCategories(), _fetchProducts()]),
                     builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
-                      if (snapshot.hasData && snapshot.data!.isNotEmpty) {
-                        for (final category in snapshot.data!.first.docs) {
-                          _categories[CategoryModel.fromJson(category.data())] = (snapshot.data!.last as List<ProductModel>).where((ProductModel element) => element.categoryID == category.categoryID).toList();
+                      if (snapshot.hasData && snapshot.data!.first.isNotEmpty) {
+                        for (final CategoryModel category in snapshot.data!.first) {
+                          _categories[category] = snapshot.data!.last.where((ProductModel element) => element.categoryID == category.categoryID).toList();
                           _categoriesMap[category.categoryName] = _categories[category]!.length.toDouble();
                         }
 
@@ -172,7 +172,7 @@ class _ChartsState extends State<Charts> with TickerProviderStateMixin {
                           animationDuration: 800.milliseconds,
                           chartLegendSpacing: 32,
                           chartRadius: MediaQuery.of(context).size.width / 3.2,
-                          colorList: const <Color>[purple, dark],
+                          colorList: Colors.primaries,
                           initialAngleInDegree: 0,
                           chartType: ChartType.ring,
                           ringStrokeWidth: 32,
@@ -192,7 +192,7 @@ class _ChartsState extends State<Charts> with TickerProviderStateMixin {
                             decimalPlaces: 1,
                           ),
                         );
-                      } else if (snapshot.hasData && snapshot.data!.isEmpty) {
+                      } else if (snapshot.hasData && snapshot.data!.first.isEmpty) {
                         return Center(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,

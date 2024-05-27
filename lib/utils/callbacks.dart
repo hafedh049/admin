@@ -15,7 +15,7 @@ Future<bool> init() async {
     await settingsBox!.putAll(
       <String, dynamic>{
         "theme": "light",
-        "language": "en",
+        "language": "ar",
       },
     );
   }

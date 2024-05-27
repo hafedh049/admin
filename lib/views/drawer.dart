@@ -54,7 +54,7 @@ class _DDrawerState extends State<DDrawer> {
                         splashColor: transparent,
                         highlightColor: transparent,
                         hoverColor: transparent,
-                        onTap: () => tile['tile'] == 'Home' ? Navigator.pop(context) : Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => tile["page"])),
+                        onTap: () => tile['tile'] == 'Home'.tr ? Navigator.pop(context) : Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => tile["page"])),
                         child: Row(
                           children: <Widget>[
                             Icon(tile["icon"], size: 20, color: dark.withOpacity(.5)),
