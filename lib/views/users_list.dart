@@ -233,7 +233,7 @@ class _UsersListState extends State<UsersList> {
                                     const SizedBox(width: 10),
                                     for (final String type in _users[index].userType) ...<Widget>[
                                       const SizedBox(width: 10),
-                                      Text(type.toUpperCase(), style: GoogleFonts.abel(fontSize: 12, color: dark, fontWeight: FontWeight.w500)),
+                                      Text(type.toUpperCase().tr, style: GoogleFonts.abel(fontSize: 12, color: dark, fontWeight: FontWeight.w500)),
                                     ]
                                   ],
                                 ),

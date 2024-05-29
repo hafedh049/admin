@@ -236,7 +236,7 @@ class _OffersListState extends State<OffersList> {
                                       child: Text("OFFER TYPE".tr, style: GoogleFonts.abel(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
                                     ),
                                     const SizedBox(width: 10),
-                                    Flexible(child: Text(_offers[index].offerType.toUpperCase(), style: GoogleFonts.abel(fontSize: 12, color: dark, fontWeight: FontWeight.w500))),
+                                    Flexible(child: Text(_offers[index].offerType.toUpperCase().tr, style: GoogleFonts.abel(fontSize: 12, color: dark, fontWeight: FontWeight.w500))),
                                   ],
                                 ),
                                 const SizedBox(height: 10),

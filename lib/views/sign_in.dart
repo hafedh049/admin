@@ -38,7 +38,6 @@ class _SignInState extends State<SignIn> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          leading: IconButton(onPressed: () => Navigator.pop(context), icon: const Icon(FontAwesome.chevron_left_solid, size: 15, color: dark)),
           centerTitle: true,
           backgroundColor: white,
           title: Text("Admin Sign-In".tr, style: GoogleFonts.abel(fontSize: 22, color: dark, fontWeight: FontWeight.bold)),

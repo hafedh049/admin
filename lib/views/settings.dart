@@ -84,7 +84,7 @@ class _SettingsState extends State<Settings> {
                 builder: (BuildContext context, void Function(void Function()) _) {
                   return Row(
                     children: <Widget>[
-                      Text("${'Theme'.tr} (${settingsBox!.get('theme').toUpperCase()})", style: GoogleFonts.abel(color: dark, fontSize: 14, fontWeight: FontWeight.bold)),
+                      Text("${'Theme'.tr} (${settingsBox!.get('theme').toUpperCase().tr})", style: GoogleFonts.abel(color: dark, fontSize: 14, fontWeight: FontWeight.bold)),
                       const Spacer(),
                       SizedBox(
                         height: 30,
@@ -92,9 +92,9 @@ class _SettingsState extends State<Settings> {
                           current: settingsBox!.get("theme"),
                           values: const <String>["light", "dark"],
                           onChanged: (String value) {
-                            settingsBox!.put("theme", value);
+                            /*   settingsBox!.put("theme", value);
                             Get.changeTheme(value == "light" ? ThemeData.light() : ThemeData.dark());
-                            _(() {});
+                            _(() {});*/
                           },
                           iconList: <Container>[
                             for (final String key in const <String>["light", "dark"])

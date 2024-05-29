@@ -161,7 +161,7 @@ class _OrdersListState extends State<OrdersList> {
                                               ],
                                             );
 
-                                            showToast(context, 'E-mail sent.');
+                                            showToast(context, 'E-mail sent.'.tr);
                                             showToast(context, "Order confirmed successfully".tr);
                                             Navigator.pop(context);
                                           } catch (error) {

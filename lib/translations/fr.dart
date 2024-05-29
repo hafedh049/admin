@@ -82,6 +82,7 @@ final Map<String, String> fr = <String, String>{
   "Chats": "Chats",
   "Charts": "Graphiques",
   "Offers": "Offres",
+  "EXCLUSIVE": "EXCLUSIVE",
   "Offers List": "Liste des offres",
   "Offer deleted successfully": "Offre supprimée avec succès",
   "OFFER NAME": "NOM DE L'OFFRE",
@@ -99,6 +100,9 @@ final Map<String, String> fr = <String, String>{
   "ORDER DATE": "DATE DE COMMANDE",
   "No Orders Yet!": "Pas encore de commandes !",
   "English": "Anglais",
+  "Users List": "List des utilisateurs",
+  "CLIENT": "CLIENT",
+  "SUPPLIER": "FOURNISSEUR",
   "Français": "Français",
   "العربية": "Arabe",
   "Language": "Langue",
@@ -115,4 +119,5 @@ final Map<String, String> fr = <String, String>{
   "مصور": "Photographe",
   "ديكور": "Décoration",
   "رحلات": "Voyages",
+  "Are you sure you want to confirm the order ? There is no turning back after this operation": "Etes-vous sûr de vouloir confirmer la commande ? Il n'y a plus de retour en arrière possible après cette opération",
 };
