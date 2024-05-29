@@ -37,7 +37,7 @@ final Map<String, String> ar = <String, String>{
   "Password": "كلمة السر",
   "Phone Number": "رقم الهاتف",
   "Pick a country": "اختر بلد",
-  "Search": "بحث",
+  "Search": "لوج",
   "Male": "ذكر",
   "Female": "أنثى",
   "OR": "أو",
