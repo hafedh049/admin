@@ -40,6 +40,7 @@ final Map<String, String> en = <String, String>{
   "Search": "Search",
   "Male": "Male",
   "Female": "Female",
+  "Dabka": "Dabka",
   "OR": "OR",
   "Username is required": "Username is required",
   "Enter a correct e-mail address": "Enter a correct e-mail address",

@@ -102,6 +102,7 @@ final Map<String, String> fr = <String, String>{
   "Français": "Français",
   "العربية": "Arabe",
   "Language": "Langue",
+  "Dabka": "Dabka",
   "Theme": "Thème",
   "Bye": "Au revoir",
   "Sign Out": "Déconnexion",
