@@ -34,7 +34,7 @@ class ChatHead {
       'roomID': roomID,
       'timestamp': timestamp,
       'remoteName': remoteName,
-      'remoteID': remoteID, // Added this line
+      'remoteID': remoteID,
       'remoteImage': remoteImage,
       'lastMessage': lastMessage,
       'lastMessageType': lastMessageType,
