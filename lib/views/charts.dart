@@ -151,7 +151,7 @@ class _ChartsState extends State<Charts> with TickerProviderStateMixin {
                       if (snapshot.hasData && snapshot.data!.first.isNotEmpty) {
                         for (final CategoryModel category in snapshot.data!.first) {
                           _categories[category] = snapshot.data!.last.where((ProductModel element) => element.categoryID == category.categoryID).toList();
-                          _categoriesMap[category.categoryName] = _categories[category]!.length.toDouble();
+                          _categoriesMap[category.categoryName.tr] = _categories[category]!.length.toDouble();
                         }
 
                         if (_categoriesMap.values.every((double element) => element == 0)) {
