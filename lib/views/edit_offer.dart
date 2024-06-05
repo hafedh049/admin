@@ -129,7 +129,7 @@ class _EditOfferState extends State<EditOffer> {
                                       items: _categories,
                                       excludeSelected: false,
                                       initialItem: _categories[_categories.indexOf(_selectedCategory!)],
-                                      onChanged: (CategoryModel value) => _selectedCategory = value,
+                                      onChanged: (CategoryModel? value) => _selectedCategory = value,
                                     ),
                             ),
                             Text("Offer Name".tr, style: GoogleFonts.abel(fontSize: 16, color: dark, fontWeight: FontWeight.w500)),
