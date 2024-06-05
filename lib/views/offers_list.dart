@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dabka/utils/helpers/error.dart';
 import 'package:dabka/utils/helpers/wait.dart';
 import 'package:dabka/utils/shared.dart';
+import 'package:dabka/views/edit_offer.dart';
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -116,6 +117,7 @@ class _OffersListState extends State<OffersList> {
                     _offers = snapshot.data!.docs.map((QueryDocumentSnapshot<Map<String, dynamic>> e) => OfferModel.fromJson(e.data())).where((OfferModel element) => element.offerName.toLowerCase().startsWith(_searchController.text.trim().toLowerCase())).toList();
                     return ListView.separated(
                       itemBuilder: (BuildContext context, int index) => GestureDetector(
+                        onTap: () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => EditOffer(offer: _offers[index]))),
                         onLongPress: () {
                           showBottomSheet(
                             context: context,

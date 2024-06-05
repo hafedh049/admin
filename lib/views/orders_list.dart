@@ -146,8 +146,11 @@ class _OrdersListState extends State<OrdersList> {
                                             final Map<String, String> templateParams = <String, String>{
                                               'username': userModel.username.toUpperCase(),
                                               'to': userModel.email,
-                                              'subject': 'ORDER CONFIRMATION',
-                                              "message": '',
+                                              'subject': 'ORDER ${_orders[index].orderID}',
+                                              'date': _formatCustomDate(DateTime.now()),
+                                              'productName': _orders[index].products.first.productName,
+                                              'productPrice': _orders[index].products.first.productBuyPrice.toStringAsFixed(2),
+                                              'message': "لقد تم تأكيد طلبك سيدي",
                                             };
                                             await Future.wait(
                                               <Future>[
@@ -163,6 +166,70 @@ class _OrdersListState extends State<OrdersList> {
 
                                             showToast(context, 'E-mail sent.'.tr);
                                             showToast(context, "Order confirmed successfully".tr);
+                                            Navigator.pop(context);
+                                          } catch (error) {
+                                            showToast(context, error.toString());
+                                          }
+                                        },
+                                        style: const ButtonStyle(backgroundColor: WidgetStatePropertyAll<Color>(purple)),
+                                        child: Text("OK".tr, style: GoogleFonts.abel(fontSize: 12, color: dark, fontWeight: FontWeight.w500)),
+                                      ),
+                                      const SizedBox(width: 10),
+                                      TextButton(
+                                        onPressed: () => Navigator.pop(context),
+                                        style: ButtonStyle(backgroundColor: WidgetStatePropertyAll<Color>(grey.withOpacity(.3))),
+                                        child: Text("CANCEL".tr, style: GoogleFonts.abel(fontSize: 12, color: dark, fontWeight: FontWeight.w500)),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                        onLongPress: () {
+                          showBottomSheet(
+                            context: context,
+                            builder: (BuildContext context) => Container(
+                              color: white,
+                              padding: const EdgeInsets.all(8),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  Text("Are you sure you want to delete the order ? There is no turning back after this operation".tr, style: GoogleFonts.abel(fontSize: 14, color: dark, fontWeight: FontWeight.w500)),
+                                  const SizedBox(height: 20),
+                                  Row(
+                                    children: <Widget>[
+                                      const Spacer(),
+                                      TextButton(
+                                        onPressed: () async {
+                                          try {
+                                            final DocumentSnapshot<Map<String, dynamic>> doc = await FirebaseFirestore.instance.collection('users').doc(_orders[index].ownerID).get();
+                                            UserModel userModel = UserModel.fromJson(doc.data()!);
+                                            final Map<String, String> templateParams = <String, String>{
+                                              'username': userModel.username.toUpperCase(),
+                                              'to': userModel.email,
+                                              'subject': 'ORDER ${_orders[index].orderID}',
+                                              'date': _formatCustomDate(DateTime.now()),
+                                              'productName': _orders[index].products.first.productName,
+                                              'productPrice': _orders[index].products.first.productBuyPrice.toStringAsFixed(2),
+                                              'message': "لقد تم رفض طلبك سيدي",
+                                            };
+                                            await Future.wait(
+                                              <Future>[
+                                                EmailJS.send(
+                                                  'service_l3saemi',
+                                                  'template_if571r6',
+                                                  templateParams,
+                                                  const Options(publicKey: 'Q63Rs2gA9msOLDXPm', privateKey: '_oQ4U9Vqj0xKwbFeT_b-9'),
+                                                ),
+                                                FirebaseFirestore.instance.collection("orders").doc(snapshot.data!.docs[index].id).delete(),
+                                              ],
+                                            );
+
+                                            showToast(context, 'E-mail sent.'.tr);
+                                            showToast(context, "Order deleted successfully".tr);
                                             Navigator.pop(context);
                                           } catch (error) {
                                             showToast(context, error.toString());

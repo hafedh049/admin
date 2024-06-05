@@ -120,4 +120,8 @@ final Map<String, String> ar = <String, String>{
   "ديكور": "ديكور",
   "رحلات": "رحلات",
   "Are you sure you want to confirm the order ? There is no turning back after this operation": "هل أنت متأكد أنك تريد تأكيد الطلب؟ ليس هناك رجوع بعد هذه العملية",
+  "Are you sure you want to delete the order ? There is no turning back after this operation": "هل أنت متأكد من رغبتك في حذف الطلب؟ ليس هناك عودة للوراء بعد هذه العملية",
+  "Order deleted successfully": "تم حذف الطلب بنجاح",
+  "Edit Offer": "تعديل العرض",
+  "Offer Modified Successfully": "تم تعديل العرض بنجاح",
 };
