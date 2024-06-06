@@ -119,9 +119,7 @@ class _UsersListState extends State<UsersList> {
                                           final QuerySnapshot<Map<String, dynamic>> products = await FirebaseFirestore.instance.collection("products").where("supplierID", isEqualTo: _users[index].userID).get();
                                           for (final QueryDocumentSnapshot<Map<String, dynamic>> prod in products.docs) {
                                             final QuerySnapshot<Map<String, dynamic>> reviews = await FirebaseFirestore.instance.collection("reviews").where("productID", isEqualTo: prod.get('productID')).get();
-                                            for (final QueryDocumentSnapshot<Map<String, dynamic>> review in reviews.docs) {
-                                              await review.reference.delete();
-                                            }
+                                            await Future.wait(<Future>[for (final QueryDocumentSnapshot<Map<String, dynamic>> review in reviews.docs) review.reference.delete()]);
                                           }
 
                                           for (final QueryDocumentSnapshot<Map<String, dynamic>> prod in products.docs) {
