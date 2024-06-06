@@ -125,4 +125,6 @@ final Map<String, String> ar = <String, String>{
   "Edit Offer": "تعديل العرض",
   "Offer Modified Successfully": "تم تعديل العرض بنجاح",
   "Edit Category": "تعديل الفئة",
+  "IN PROGRESS": "جاري الطلب",
+  "CONFIRMED": "كملت",
 };

@@ -148,8 +148,6 @@ class _EditCategoryState extends State<EditCategory> {
                           onTap: () async {
                             if (_categoryNameController.text.trim().isEmpty) {
                               showToast(context, "Category name is required".tr, color: red);
-                            } else if (_image == null) {
-                              showToast(context, "Pick an image for the category".tr, color: red);
                             } else {
                               try {
                                 _(() => _ignoreStupidity = true);

@@ -122,12 +122,26 @@ class _UsersListState extends State<UsersList> {
                                             await Future.wait(<Future>[for (final QueryDocumentSnapshot<Map<String, dynamic>> review in reviews.docs) review.reference.delete()]);
                                           }
 
-                                          for (final QueryDocumentSnapshot<Map<String, dynamic>> prod in products.docs) {
-                                            await prod.reference.delete();
-                                          }
+                                          await Future.wait(<Future>[for (final QueryDocumentSnapshot<Map<String, dynamic>> prod in products.docs) prod.reference.delete()]);
+
+                                          final QuerySnapshot<Map<String, dynamic>> chats = await FirebaseFirestore.instance.collection("chat_heads").where("remoteID", isEqualTo: _users[index].userID).get();
+
+                                          await Future.wait(<Future>[for (final QueryDocumentSnapshot<Map<String, dynamic>> chat in chats.docs) chat.reference.delete()]);
+
+                                          final QuerySnapshot<Map<String, dynamic>> messages1 = await FirebaseFirestore.instance.collection("messages").where("senderID", isEqualTo: _users[index].userID).get();
+                                          final QuerySnapshot<Map<String, dynamic>> messages2 = await FirebaseFirestore.instance.collection("messages").where("receiverID", isEqualTo: _users[index].userID).get();
+
+                                          await Future.wait(
+                                            <Future>[
+                                              for (final QueryDocumentSnapshot<Map<String, dynamic>> message in messages1.docs) message.reference.delete(),
+                                              for (final QueryDocumentSnapshot<Map<String, dynamic>> message in messages2.docs) message.reference.delete(),
+                                            ],
+                                          );
 
                                           await FirebaseFirestore.instance.collection("users").doc(snapshot.data!.docs[index].id).delete();
+
                                           showToast(context, "User deleted successfully".tr);
+
                                           Navigator.pop(context);
                                         },
                                         style: const ButtonStyle(backgroundColor: WidgetStatePropertyAll<Color>(purple)),

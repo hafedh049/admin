@@ -106,6 +106,7 @@ final Map<String, String> en = <String, String>{
   "العربية": "العربية",
   "Language": "Language",
   "Theme": "Theme",
+  "IN PROGRESS": "IN PROGRESS",
   "CLIENT": "CLIENT",
   "SUPPLIER": "SUPPLIER",
   "Bye": "Bye",
@@ -125,4 +126,5 @@ final Map<String, String> en = <String, String>{
   "Edit Offer": "Edit Offer",
   "Offer Modified Successfully": "Offer Modified Successfully",
   "Edit Category": "Edit Category",
+  "CONFIRMED": "CONFIRMED",
 };

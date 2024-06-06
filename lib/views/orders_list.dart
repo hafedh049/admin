@@ -150,7 +150,7 @@ class _OrdersListState extends State<OrdersList> {
                                               'date': _formatCustomDate(DateTime.now()),
                                               'productName': _orders[index].products.first.productName,
                                               'productPrice': _orders[index].products.first.productBuyPrice.toStringAsFixed(2),
-                                              'message': "لقد تم تأكيد طلبك سيدي",
+                                              'state': "تاكيده",
                                             };
                                             await Future.wait(
                                               <Future>[
@@ -214,7 +214,7 @@ class _OrdersListState extends State<OrdersList> {
                                               'date': _formatCustomDate(DateTime.now()),
                                               'productName': _orders[index].products.first.productName,
                                               'productPrice': _orders[index].products.first.productBuyPrice.toStringAsFixed(2),
-                                              'message': "لقد تم رفض طلبك سيدي",
+                                              'state': "رفض",
                                             };
                                             await Future.wait(
                                               <Future>[
@@ -323,7 +323,7 @@ class _OrdersListState extends State<OrdersList> {
                                         color: _orders[index].state.toUpperCase() == "IN PROGRESS" ? green : blue,
                                       ),
                                       child: Text(
-                                        _orders[index].state.toUpperCase(),
+                                        _orders[index].state.toUpperCase().tr,
                                         style: GoogleFonts.abel(fontSize: 12, color: white, fontWeight: FontWeight.w500),
                                       ),
                                     ),
