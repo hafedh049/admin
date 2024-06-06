@@ -84,7 +84,7 @@ class _SettingsState extends State<Settings> {
                 builder: (BuildContext context, void Function(void Function()) _) {
                   return Row(
                     children: <Widget>[
-                      Text("${'Theme'.tr} (${settingsBox!.get('theme').toUpperCase().tr})", style: GoogleFonts.abel(color: dark, fontSize: 14, fontWeight: FontWeight.bold)),
+                      Text("${'Theme'.tr} (${(settingsBox!.get('theme') as String).toUpperCase().tr})", style: GoogleFonts.abel(color: dark, fontSize: 14, fontWeight: FontWeight.bold)),
                       const Spacer(),
                       SizedBox(
                         height: 30,
