@@ -5,6 +5,7 @@ import 'package:dabka/utils/helpers/error.dart';
 import 'package:dabka/utils/helpers/wait.dart';
 import 'package:dabka/utils/shared.dart';
 import 'package:dabka/views/add_category.dart';
+import 'package:dabka/views/edit_category.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -97,6 +98,7 @@ class _CategoriesListState extends State<CategoriesList> {
                     _categories = snapshot.data!.docs.map((e) => CategoryModel.fromJson(e.data())).where((CategoryModel element) => element.categoryName.toLowerCase().contains(_searchController.text.trim().toLowerCase())).toList();
                     return ListView.separated(
                       itemBuilder: (BuildContext context, int index) => GestureDetector(
+                        onTap: () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => EditCategory(category: _categories[index]))),
                         onLongPress: () {
                           showBottomSheet(
                             context: context,

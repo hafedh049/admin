@@ -124,4 +124,5 @@ final Map<String, String> ar = <String, String>{
   "Order deleted successfully": "تم حذف الطلب بنجاح",
   "Edit Offer": "تعديل العرض",
   "Offer Modified Successfully": "تم تعديل العرض بنجاح",
+  "Edit Category": "تعديل الفئة",
 };
