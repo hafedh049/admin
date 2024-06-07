@@ -127,4 +127,5 @@ final Map<String, String> en = <String, String>{
   "Offer Modified Successfully": "Offer Modified Successfully",
   "Edit Category": "Edit Category",
   "CONFIRMED": "CONFIRMED",
+  "STATE": "STATE",
 };

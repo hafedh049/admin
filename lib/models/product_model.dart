@@ -11,9 +11,11 @@ class ProductModel with CustomDropdownListFilter {
   final double productRating;
   final List<MediaModel> productImages;
   final List<MediaModel> productShorts;
+  List<String> productOptions;
 
   ProductModel({
     required this.categoryName,
+    required this.productOptions,
     required this.categoryID,
     required this.supplierID,
     required this.productID,
@@ -27,6 +29,7 @@ class ProductModel with CustomDropdownListFilter {
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     return ProductModel(
+      productOptions: json['productOptions'].cast<String>(),
       categoryID: json['categoryID'],
       categoryName: json['categoryName'],
       supplierID: json['supplierID'],
@@ -43,6 +46,7 @@ class ProductModel with CustomDropdownListFilter {
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
       'categoryID': categoryID,
+      'productOptions': productOptions,
       'categoryName': categoryName,
       'supplierID': supplierID,
       'productID': productID,
@@ -50,8 +54,8 @@ class ProductModel with CustomDropdownListFilter {
       'productDescription': productDescription,
       'productBuyPrice': productBuyPrice,
       'productRating': productRating,
-      'productImages': [for (final MediaModel e in productImages) e.toJson()],
-      'productShorts': [for (final MediaModel e in productShorts) e.toJson()],
+      'productImages': <Map<String, dynamic>>[for (final MediaModel e in productImages) e.toJson()],
+      'productShorts': <Map<String, dynamic>>[for (final MediaModel e in productShorts) e.toJson()],
     };
   }
 

@@ -155,10 +155,10 @@ class _OrdersListState extends State<OrdersList> {
                                             await Future.wait(
                                               <Future>[
                                                 EmailJS.send(
-                                                  'service_l3saemi',
-                                                  'template_if571r6',
+                                                  'service_awnyq8c',
+                                                  'template_493webb',
                                                   templateParams,
-                                                  const Options(publicKey: 'Q63Rs2gA9msOLDXPm', privateKey: '_oQ4U9Vqj0xKwbFeT_b-9'),
+                                                  const Options(publicKey: 'DNSQ5Ylo8CLNirKOX', privateKey: 'TQdionlNvOrnD56ftvXWl'),
                                                 ),
                                                 FirebaseFirestore.instance.collection("orders").doc(snapshot.data!.docs[index].id).update({"state": "CONFIRMED"})
                                               ],
@@ -219,10 +219,10 @@ class _OrdersListState extends State<OrdersList> {
                                             await Future.wait(
                                               <Future>[
                                                 EmailJS.send(
-                                                  'service_l3saemi',
-                                                  'template_if571r6',
+                                                  'service_awnyq8c',
+                                                  'template_493webb',
                                                   templateParams,
-                                                  const Options(publicKey: 'Q63Rs2gA9msOLDXPm', privateKey: '_oQ4U9Vqj0xKwbFeT_b-9'),
+                                                  const Options(publicKey: 'DNSQ5Ylo8CLNirKOX', privateKey: 'TQdionlNvOrnD56ftvXWl'),
                                                 ),
                                                 FirebaseFirestore.instance.collection("orders").doc(snapshot.data!.docs[index].id).delete(),
                                               ],
@@ -313,7 +313,7 @@ class _OrdersListState extends State<OrdersList> {
                                     Container(
                                       padding: const EdgeInsets.all(8),
                                       decoration: BoxDecoration(color: purple, borderRadius: BorderRadius.circular(5)),
-                                      child: Text("STATE", style: GoogleFonts.abel(fontSize: 12, color: dark, fontWeight: FontWeight.w500)),
+                                      child: Text("STATE".tr, style: GoogleFonts.abel(fontSize: 12, color: dark, fontWeight: FontWeight.w500)),
                                     ),
                                     const SizedBox(width: 10),
                                     Container(
@@ -353,6 +353,31 @@ class _OrdersListState extends State<OrdersList> {
                                               Text(product.value.productName, style: GoogleFonts.abel(fontSize: 16, color: dark, fontWeight: FontWeight.bold)),
                                               const SizedBox(height: 5),
                                               Text(product.value.categoryName, style: GoogleFonts.abel(fontSize: 14, color: dark, fontWeight: FontWeight.w500)),
+                                            ],
+                                          ),
+                                        ),
+                                        const SizedBox(height: 5),
+                                        Flexible(
+                                          child: Wrap(
+                                            crossAxisAlignment: WrapCrossAlignment.start,
+                                            alignment: WrapAlignment.start,
+                                            runAlignment: WrapAlignment.start,
+                                            runSpacing: 10,
+                                            spacing: 10,
+                                            children: <Widget>[
+                                              for (final String choice in product.value.productOptions)
+                                                Card(
+                                                  shadowColor: dark,
+                                                  color: white,
+                                                  elevation: 6,
+                                                  borderOnForeground: true,
+                                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                                                  child: Container(
+                                                    padding: const EdgeInsets.all(8),
+                                                    color: pink,
+                                                    child: Text(choice.tr, style: GoogleFonts.abel(fontSize: 12, color: white, fontWeight: FontWeight.bold)),
+                                                  ),
+                                                ),
                                             ],
                                           ),
                                         ),

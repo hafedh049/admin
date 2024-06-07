@@ -127,4 +127,5 @@ final Map<String, String> fr = <String, String>{
   "Edit Category": "Modifier Catégorie",
   "IN PROGRESS": "EN COURS",
   "CONFIRMED": "CONFIRMÉ",
+  "STATE": "ETAT"
 };

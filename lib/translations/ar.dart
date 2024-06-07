@@ -127,4 +127,5 @@ final Map<String, String> ar = <String, String>{
   "Edit Category": "تعديل الفئة",
   "IN PROGRESS": "جاري الطلب",
   "CONFIRMED": "كملت",
+  "STATE": "الحالة",
 };
