@@ -11,7 +11,7 @@ class ProductModel with CustomDropdownListFilter {
   final double productRating;
   final List<MediaModel> productImages;
   final List<MediaModel> productShorts;
-  List<String> productOptions;
+  final List<String> productOptions;
 
   ProductModel({
     required this.categoryName,

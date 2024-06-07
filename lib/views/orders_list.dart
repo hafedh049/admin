@@ -143,22 +143,21 @@ class _OrdersListState extends State<OrdersList> {
                                           try {
                                             final DocumentSnapshot<Map<String, dynamic>> doc = await FirebaseFirestore.instance.collection('users').doc(_orders[index].ownerID).get();
                                             UserModel userModel = UserModel.fromJson(doc.data()!);
-                                            final Map<String, String> templateParams = <String, String>{
-                                              'username': userModel.username.toUpperCase(),
-                                              'to': userModel.email,
-                                              'subject': 'ORDER ${_orders[index].orderID}',
-                                              'date': _formatCustomDate(DateTime.now()),
-                                              'productName': _orders[index].products.first.productName,
-                                              'productPrice': _orders[index].products.first.productBuyPrice.toStringAsFixed(2),
-                                              'state': "تاكيده",
-                                            };
                                             await Future.wait(
                                               <Future>[
                                                 EmailJS.send(
-                                                  'service_awnyq8c',
-                                                  'template_493webb',
-                                                  templateParams,
-                                                  const Options(publicKey: 'DNSQ5Ylo8CLNirKOX', privateKey: 'TQdionlNvOrnD56ftvXWl'),
+                                                  "service_awnyq8c",
+                                                  "template_493webb",
+                                                  <String, dynamic>{
+                                                    "username": userModel.username.toUpperCase(),
+                                                    "to": userModel.email,
+                                                    "subject": "ORDER ${_orders[index].orderID}",
+                                                    "date": _formatCustomDate(DateTime.now()),
+                                                    "productName": _orders[index].products.first.productName,
+                                                    "productPrice": _orders[index].products.first.productBuyPrice.toStringAsFixed(2),
+                                                    "state": "تاكيده",
+                                                  },
+                                                  const Options(publicKey: "DNSQ5Ylo8CLNirKOX", privateKey: "TQdionlNvOrnD56ftvXWl"),
                                                 ),
                                                 FirebaseFirestore.instance.collection("orders").doc(snapshot.data!.docs[index].id).update({"state": "CONFIRMED"})
                                               ],
@@ -207,22 +206,22 @@ class _OrdersListState extends State<OrdersList> {
                                           try {
                                             final DocumentSnapshot<Map<String, dynamic>> doc = await FirebaseFirestore.instance.collection('users').doc(_orders[index].ownerID).get();
                                             UserModel userModel = UserModel.fromJson(doc.data()!);
-                                            final Map<String, String> templateParams = <String, String>{
-                                              'username': userModel.username.toUpperCase(),
-                                              'to': userModel.email,
-                                              'subject': 'ORDER ${_orders[index].orderID}',
-                                              'date': _formatCustomDate(DateTime.now()),
-                                              'productName': _orders[index].products.first.productName,
-                                              'productPrice': _orders[index].products.first.productBuyPrice.toStringAsFixed(2),
-                                              'state': "رفض",
-                                            };
+
                                             await Future.wait(
                                               <Future>[
                                                 EmailJS.send(
-                                                  'service_awnyq8c',
-                                                  'template_493webb',
-                                                  templateParams,
-                                                  const Options(publicKey: 'DNSQ5Ylo8CLNirKOX', privateKey: 'TQdionlNvOrnD56ftvXWl'),
+                                                  "service_awnyq8c",
+                                                  "template_493webb",
+                                                  <String, dynamic>{
+                                                    "username": userModel.username.toUpperCase(),
+                                                    "to": userModel.email,
+                                                    "subject": "ORDER ${_orders[index].orderID}",
+                                                    "date": _formatCustomDate(DateTime.now()),
+                                                    "productName": _orders[index].products.first.productName,
+                                                    "productPrice": _orders[index].products.first.productBuyPrice.toStringAsFixed(2),
+                                                    "state": "رفضه",
+                                                  },
+                                                  const Options(publicKey: "DNSQ5Ylo8CLNirKOX", privateKey: "TQdionlNvOrnD56ftvXWl"),
                                                 ),
                                                 FirebaseFirestore.instance.collection("orders").doc(snapshot.data!.docs[index].id).delete(),
                                               ],

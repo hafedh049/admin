@@ -2,6 +2,7 @@ import 'package:async/async.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dabka/models/product_model.dart';
 import 'package:dabka/models/user_model.dart';
+import 'package:dabka/utils/callbacks.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -47,6 +48,7 @@ class _ChartsState extends State<Charts> with TickerProviderStateMixin {
     final Stream<QuerySnapshot<Map<String, dynamic>>> query = FirebaseFirestore.instance.collection("products").snapshots();
     return query.map(
       (QuerySnapshot<Map<String, dynamic>> event) {
+        showToast(context, event.docs.map((e) => e.data().containsKey("productOptions")).toString());
         return event.docs.map((QueryDocumentSnapshot<Map<String, dynamic>> e) => ProductModel.fromJson(e.data())).toList();
       },
     );
